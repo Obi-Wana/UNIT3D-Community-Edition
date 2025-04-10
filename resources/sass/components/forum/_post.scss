@@ -329,6 +329,10 @@
         gap: 0 6px;
     }
 
+    .post__author {
+        width: fit-content;
+    }
+
     .post__aside {
         display: grid;
         grid-template-areas: 'figure author author author' 'figure topics posts .';
