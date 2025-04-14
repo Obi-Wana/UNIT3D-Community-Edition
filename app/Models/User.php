@@ -1172,4 +1172,14 @@ class User extends Authenticatable implements MustVerifyEmail
     {
         dispatch(fn () => $this->notify(new ResetPassword($token)))->afterResponse();
     }
+
+    /**
+     * Has Many Collectibles.
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany<UserEcho, $this>
+     */
+    public function collectibles(): \Illuminate\Database\Eloquent\Relations\HasMany
+    {
+        return $this->hasMany(CollectibleItem::class);
+    }
 }

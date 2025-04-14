@@ -114,6 +114,20 @@ Route::middleware('language')->group(function (): void {
             Route::get('/torrent-covers/{torrent}', [App\Http\Controllers\AuthenticatedImageController::class, 'torrentCover'])->name('torrent_cover');
             Route::get('/user-avatars/{user:username}', [App\Http\Controllers\AuthenticatedImageController::class, 'userAvatar'])->name('user_avatar');
             Route::get('/user-icons/{user:username}', [App\Http\Controllers\AuthenticatedImageController::class, 'userIcon'])->name('user_icon');
+            Route::get('/collectible-icons/{collectible}', [App\Http\Controllers\AuthenticatedImageController::class, 'collectibleIcon'])->name('collectible_icon');
+        });
+
+        // Collectible System
+        Route::prefix('collectibles')->group(function (): void {
+            Route::name('collectibles.')->group(function (): void {
+                Route::get('/', [App\Http\Controllers\Collectible\CollectibleController::class, 'index'])->name('index');
+                Route::get('/my-collectibles', [App\Http\Controllers\Collectible\CollectibleController::class, 'myCollectibles'])->name('my_collectibles');
+                Route::get('/item/{collectible}', [App\Http\Controllers\Collectible\CollectibleController::class, 'show'])->name('show');
+                Route::get('/item/{collectible}/create-offer', [App\Http\Controllers\Collectible\CollectibleController::class, 'createOffer'])->name('create_offer');
+                Route::post('/item/{collectible}/create-offer', [App\Http\Controllers\Collectible\CollectibleController::class, 'storeOffer'])->name('store_offer');
+                Route::post('/item/{collectibleOffer}/accept-offer', [App\Http\Controllers\Collectible\CollectibleController::class, 'acceptOffer'])->name('accept_offer');
+                Route::post('/item/{collectible}/buy', [App\Http\Controllers\Collectible\CollectibleController::class, 'buy'])->name('buy');
+            });
         });
 
         // Donation System
@@ -874,6 +888,27 @@ Route::middleware('language')->group(function (): void {
         // Codebase Version Check
         Route::prefix('UNIT3D')->group(function (): void {
             Route::get('/', [App\Http\Controllers\Staff\VersionController::class, 'checkVersion']);
+        });
+
+        // Collectible System
+        Route::prefix('collectibles')->group(function (): void {
+            Route::name('collectibles.')->group(function (): void {
+                Route::get('/', [App\Http\Controllers\Staff\CollectibleController::class, 'index'])->name('index');
+                Route::get('/create', [App\Http\Controllers\Staff\CollectibleController::class, 'create'])->name('create');
+                Route::post('/', [App\Http\Controllers\Staff\CollectibleController::class, 'store'])->name('store');
+                Route::get('/{collectible}', [App\Http\Controllers\Staff\CollectibleController::class, 'edit'])->name('edit');
+                Route::post('/{collectible}', [App\Http\Controllers\Staff\CollectibleController::class, 'update'])->name('update');
+            });
+        });
+
+        Route::prefix('collectible-categories')->middleware('admin')->group(function (): void {
+            Route::name('collectible_categories.')->group(function (): void {
+                Route::get('/create', [App\Http\Controllers\Staff\CollectibleCategoryController::class, 'create'])->name('create');
+                Route::post('/', [App\Http\Controllers\Staff\CollectibleCategoryController::class, 'store'])->name('store');
+                Route::get('/{collectibleCategory}/edit', [App\Http\Controllers\Staff\CollectibleCategoryController::class, 'edit'])->name('edit');
+                Route::patch('/{collectibleCategory}', [App\Http\Controllers\Staff\CollectibleCategoryController::class, 'update'])->name('update');
+                Route::delete('/{collectibleCategory}', [App\Http\Controllers\Staff\CollectibleCategoryController::class, 'destroy'])->name('destroy');
+            });
         });
 
         // Commands
