@@ -32,7 +32,7 @@
     @include('forum.partials.buttons')
 @endsection
 
-@section('page', 'page__forum--topic')
+@section('page', 'page__topic--show')
 
 @section('main')
     @livewire('topic-post-search', ['topic' => $topic])

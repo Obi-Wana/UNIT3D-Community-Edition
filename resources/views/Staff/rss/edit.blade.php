@@ -20,7 +20,7 @@
     </li>
 @endsection
 
-@section('page', 'page__rss-admin--edit')
+@section('page', 'page__staff-rss--edit')
 
 @section('main')
     <section class="panelV2">

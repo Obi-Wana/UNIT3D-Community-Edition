@@ -11,7 +11,7 @@
     </li>
 @endsection
 
-@section('page', 'page__index')
+@section('page', 'page__staff-resolution--index')
 
 @section('main')
     <section class="panelV2">

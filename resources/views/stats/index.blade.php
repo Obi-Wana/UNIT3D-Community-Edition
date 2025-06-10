@@ -49,6 +49,8 @@
     </li>
 @endsection
 
+@section('page', 'page__stats--index')
+
 @section('main')
     <section class="panelV2">
         <h2 class="panel__heading">{{ __('stat.nerd-stats') }}</h2>

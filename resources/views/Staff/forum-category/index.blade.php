@@ -19,7 +19,7 @@
     </li>
 @endsection
 
-@section('page', 'page__forums-admin--index')
+@section('page', 'page__staff-forum-category--index')
 
 @section('main')
     @foreach ($categories as $category)

@@ -935,12 +935,12 @@ a:hover {
 /* Forums
 ---------------------------------------------------------------------------- */
 
-.page__forums--index > article {
+.page__forum--index > article {
     flex-direction: column;
 }
 
-.page__forums--index > article > div,
-.page__forums--index > article > aside {
+.page__forum--index > article > div,
+.page__forum--index > article > aside {
     max-width: 100%;
     width: 100%;
 }
@@ -1007,21 +1007,21 @@ a:hover {
 }
 
 /* Topic listing */
-.page__forum--display .sidebar2 {
+.page__forum-topic--index .sidebar2 {
     flex-direction: column-reverse;
 }
 
-.page__forum--display .sidebar2 > div,
-.page__forum--display .sidebar2 > aside {
+.page__forum-topic--index .sidebar2 > div,
+.page__forum-topic--index .sidebar2 > aside {
     max-width: 100%;
     width: 100%;
 }
 
-.page__forum--display .sidebar2 > aside .panel__body {
+.page__forum-topic--index .sidebar2 > aside .panel__body {
     padding: 8px;
 }
 
-.page__forum--display .sidebar2 > aside form {
+.page__forum-topic--index .sidebar2 > aside form {
     flex-direction: row;
     padding-top: 0;
 }
@@ -1077,11 +1077,11 @@ a:hover {
 
 /* Topic */
 
-.page__forum--topic > .sidebar2 > div > .panelV2 {
+.page__topic--show > .sidebar2 > div > .panelV2 {
     background-color: transparent;
 }
 
-.page__forum--topic > .sidebar2 > div > .panelV2 > .panel__body {
+.page__topic--show > .sidebar2 > div > .panelV2 > .panel__body {
     padding: 0;
     background-color: transparent;
 }

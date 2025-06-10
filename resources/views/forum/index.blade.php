@@ -18,7 +18,7 @@
     @include('forum.partials.buttons')
 @endsection
 
-@section('page', 'page__forums--index')
+@section('page', 'page__forum--index')
 
 @section('main')
     @foreach ($categories as $category)

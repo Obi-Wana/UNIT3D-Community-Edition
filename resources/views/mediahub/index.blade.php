@@ -14,6 +14,8 @@
     </li>
 @endsection
 
+@section('page', 'page__mediahub')
+
 @section('main')
     <section class="panelV2">
         <h2 class="panel__heading">{{ __('mediahub.title') }}</h2>

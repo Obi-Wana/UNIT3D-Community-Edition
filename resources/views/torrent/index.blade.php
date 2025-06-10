@@ -37,6 +37,8 @@
     </li>
 @endsection
 
+@section('page', 'page__torrent--index')
+
 @section('main')
     @livewire('torrent-search')
 @endsection

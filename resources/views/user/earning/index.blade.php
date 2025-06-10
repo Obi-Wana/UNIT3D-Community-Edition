@@ -20,7 +20,7 @@
     @include('user.buttons.user')
 @endsection
 
-@section('page', 'page__bonus--index')
+@section('page', 'page__user-earning--index')
 
 @section('content')
     @livewire('user-earnings', ['userId' => $user->id])

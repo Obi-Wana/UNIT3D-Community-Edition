@@ -38,7 +38,7 @@
                         <tr>
                             <td>{{ $loop->iteration }}</td>
                             <td>
-                                <x-user_tag
+                                <x-user-tag
                                     :user="$user"
                                     :anon="$user->privacy?->private_profile"
                                 />

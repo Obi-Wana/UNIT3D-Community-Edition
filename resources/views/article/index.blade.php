@@ -14,7 +14,7 @@
     </li>
 @endsection
 
-@section('page', 'page__articles--index')
+@section('page', 'page__article--index')
 
 @section('main')
     @foreach ($articles as $article)

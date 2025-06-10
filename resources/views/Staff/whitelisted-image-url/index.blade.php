@@ -9,7 +9,7 @@
     <li class="breadcrumb--active">Whitelisted Image URLs</li>
 @endsection
 
-@section('page', 'page__whitelisted-image-urls--index')
+@section('page', 'page__staff-whitelisted-image-url--index')
 
 @section('main')
     <section class="panelV2">

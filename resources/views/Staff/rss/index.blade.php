@@ -11,7 +11,7 @@
     </li>
 @endsection
 
-@section('page', 'page__rss-admin--index')
+@section('page', 'page__staff-rss--index')
 
 @section('main')
     <section class="panelV2">

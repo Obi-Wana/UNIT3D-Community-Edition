@@ -30,6 +30,8 @@
     @include('user.buttons.user')
 @endsection
 
+@section('page', 'page__user-apikey--index')
+
 @section('main')
     <section class="panelV2">
         <h2 class="panel__heading">{{ __('user.apikeys') }}</h2>

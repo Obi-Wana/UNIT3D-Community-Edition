@@ -11,7 +11,7 @@
     </li>
 @endsection
 
-@section('page', 'page__page-admin--index')
+@section('page', 'page__staff-page--index')
 
 @section('main')
     <section class="panelV2">

@@ -19,6 +19,8 @@
     @include('user.buttons.user')
 @endsection
 
+@section('page', 'page__user-follower--index')
+
 @section('main')
     @if (auth()->user()->isAllowed($user, 'follower', 'show_follower'))
         <section class="panelV2">
@@ -43,7 +45,7 @@
                                     />
                                 </td>
                                 <td>
-                                    <x-user_tag :anon="false" :user="$follower" />
+                                    <x-user-tag :anon="false" :user="$follower" />
                                 </td>
                                 <td>{{ $follower->follow->created_at }}</td>
                             </tr>

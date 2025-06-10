@@ -22,7 +22,7 @@
     <li class="breadcrumb--active">{{ __('common.new-adj') }}</li>
 @endsection
 
-@section('page', 'page__forums-admin--create')
+@section('page', 'page__staff-forum--create')
 
 @section('main')
     <section class="panelV2">

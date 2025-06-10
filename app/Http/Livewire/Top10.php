@@ -18,6 +18,8 @@ namespace App\Http\Livewire;
 
 use App\Models\Category;
 use App\Models\History;
+use App\Models\TmdbMovie;
+use App\Models\TmdbTv;
 use App\Models\Torrent;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Query\JoinClause;
@@ -42,7 +44,7 @@ class Top10 extends Component
     public string $metaType = 'movie_meta';
 
     #[Url(history: true)]
-    #[Validate('in:day,week,weekly,month,monthly,year,all,custom')]
+    #[Validate('in:day,week,weekly,month,monthly,year,release_year,all,custom')]
     public string $interval = 'day';
 
     #[Url(history: true)]
@@ -208,6 +210,62 @@ class Top10 extends Component
     }
 
     /**
+     * @return Collection<int|string, Collection<int, Torrent>>
+     * @phpstan-ignore generics.notSubtype (I can't figure out the correct return type to silence this error)
+     */
+    #[Computed]
+    final public function releaseYear(): Collection
+    {
+        $this->validate();
+
+        $metaIdColumn = match ($this->metaType) {
+            'tv_meta' => 'tmdb_tv_id',
+            default   => 'tmdb_movie_id',
+        };
+
+        return cache()->remember(
+            'top10-by-release-year:'.$this->metaType,
+            24 * 3600,
+            fn () => Torrent::query()
+                ->withoutGlobalScopes()
+                ->with($this->metaType === 'movie_meta' ? 'movie' : 'tv')
+                ->fromSub(
+                    Torrent::query()
+                        ->withoutGlobalScopes()
+                        ->whereRelation('category', $this->metaType, '=', true)
+                        ->leftJoin('tmdb_movies', 'torrents.tmdb_movie_id', '=', 'tmdb_movies.id')
+                        ->leftJoin('tmdb_tv', 'torrents.tmdb_tv_id', '=', 'tmdb_tv.id')
+                        ->select([
+                            $metaIdColumn,
+                            DB::raw('MIN(category_id) as category_id'),
+                            DB::raw('SUM(times_completed) AS download_count'),
+                            'the_year' => $this->metaType === 'movie_meta'
+                                ? TmdbMovie::query()
+                                    ->selectRaw('EXTRACT(YEAR FROM tmdb_movies.release_date)')
+                                    ->whereColumn('tmdb_movies.id', '=', 'torrents.tmdb_movie_id')
+                                : TmdbTv::query()
+                                    ->selectRaw('EXTRACT(YEAR FROM tmdb_tv.first_air_date)')
+                                    ->whereColumn('tmdb_tv.id', '=', 'torrents.tmdb_tv_id'),
+                            DB::raw('ROW_NUMBER() OVER (PARTITION BY COALESCE(EXTRACT(YEAR FROM MAX(tmdb_movies.release_date)), EXTRACT(YEAR FROM MAX(tmdb_tv.first_air_date))) ORDER BY SUM(times_completed) DESC) AS place'),
+                        ])
+                        ->where($metaIdColumn, '!=', 0)
+                        // Small torrents screw the stats since users download them only to farm bon.
+                        ->where('torrents.size', '>', 2 * 1024 * 1024 * 1024)
+                        ->when($this->metaType === 'tv_meta', fn ($query) => $query->where('episode_number', '=', 0))
+                        ->havingNotNull('the_year')
+                        ->where(fn ($query) => $query->whereNotNull('tmdb_movies.id')->orWhereNotNull('tmdb_tv.id'))
+                        ->groupBy('the_year', $metaIdColumn),
+                    'ranked_groups',
+                )
+                ->where('place', '<=', 10)
+                ->orderByDesc('the_year')
+                ->orderBy('place')
+                ->get()
+                ->groupBy('the_year')
+        );
+    }
+
+    /**
      * @return array<string, string>
      */
     #[Computed]
@@ -241,9 +299,10 @@ class Top10 extends Component
         return view('livewire.top10', [
             'user'  => auth()->user(),
             'works' => match ($this->interval) {
-                'weekly'  => $this->weekly,
-                'monthly' => $this->monthly,
-                default   => $this->works,
+                'weekly'       => $this->weekly,
+                'monthly'      => $this->monthly,
+                'release_year' => $this->releaseYear,
+                default        => $this->works,
             },
             'metaTypes' => $this->metaTypes,
         ]);

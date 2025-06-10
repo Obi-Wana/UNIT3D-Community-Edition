@@ -106,7 +106,7 @@ test('upload a torrent creates a notification for followers', function (): void 
 
     $response = $this->followRedirects($response);
     $response->assertOk();
-    $response->assertViewIs('torrent.download_check');
+    $response->assertViewIs('torrent.download-check');
 
     Notification::assertSentTo(
         [$follower],
@@ -190,7 +190,7 @@ test('upload a torrent does not create a notification for followers when all not
 
     $response = $this->followRedirects($response);
     $response->assertOk();
-    $response->assertViewIs('torrent.download_check');
+    $response->assertViewIs('torrent.download-check');
 
     Notification::assertCount(0);
 });
@@ -270,7 +270,7 @@ test('upload a torrent does not create a notification for followers when followi
 
     $response = $this->followRedirects($response);
     $response->assertOk();
-    $response->assertViewIs('torrent.download_check');
+    $response->assertViewIs('torrent.download-check');
 
     Notification::assertCount(0);
 });
@@ -351,7 +351,7 @@ test('upload a torrent does not create a notification for followers when followi
 
     $response = $this->followRedirects($response);
     $response->assertOk();
-    $response->assertViewIs('torrent.download_check');
+    $response->assertViewIs('torrent.download-check');
 
     Notification::assertCount(0);
 });

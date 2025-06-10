@@ -36,6 +36,8 @@
     @include('forum.partials.buttons')
 @endsection
 
+@section('page', 'page__topic--edit')
+
 @section('main')
     <section class="panelV2">
         <h2 class="panel__heading">{{ __('forum.edit-topic') }}</h2>

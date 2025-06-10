@@ -19,6 +19,8 @@
     </li>
 @endsection
 
+@section('page', 'page__network--index')
+
 @section('main')
     @livewire('tmdb-network-search')
 @endsection

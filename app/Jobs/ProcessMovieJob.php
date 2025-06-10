@@ -24,10 +24,13 @@ use App\Models\TmdbMovie;
 use App\Models\TmdbPerson;
 use App\Models\Torrent;
 use App\Services\Tmdb\Client;
+use DateTime;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Foundation\Bus\Dispatchable;
 use Illuminate\Queue\InteractsWithQueue;
+use Illuminate\Queue\Middleware\RateLimited;
+use Illuminate\Queue\Middleware\Skip;
 use Illuminate\Queue\Middleware\WithoutOverlapping;
 use Illuminate\Queue\SerializesModels;
 
@@ -52,7 +55,19 @@ class ProcessMovieJob implements ShouldQueue
      */
     public function middleware(): array
     {
-        return [new WithoutOverlapping((string) $this->id)->dontRelease()->expireAfter(30)];
+        return [
+            Skip::when(cache()->has("tmdb-movie-scraper:{$this->id}")),
+            new WithoutOverlapping((string) $this->id)->dontRelease()->expireAfter(30),
+            new RateLimited('tmdb'),
+        ];
+    }
+
+    /**
+     * Determine the time at which the job should timeout.
+     */
+    public function retryUntil(): DateTime
+    {
+        return now()->addDay();
     }
 
     public function handle(): void
@@ -96,12 +111,28 @@ class ProcessMovieJob implements ShouldQueue
 
         $credits = $movieScraper->getCredits();
         $people = [];
+        $cache = [];
 
-        foreach (array_unique(array_column($credits, 'tmdb_person_id')) as $person_id) {
-            $people[] = (new Client\Person($person_id))->getPerson();
+        foreach (array_unique(array_column($credits, 'tmdb_person_id')) as $personId) {
+            // TMDB caches their api responses for 8 hours, so don't abuse them
+
+            $cacheKey = "tmdb-person-scraper:{$personId}";
+
+            if (cache()->has($cacheKey)) {
+                continue;
+            }
+
+            $people[] = (new Client\Person($personId))->getPerson();
+
+            $cache[$cacheKey] = now();
         }
 
         TmdbPerson::upsert($people, 'id');
+
+        if ($cache !== []) {
+            cache()->put($cache, 8 * 3600);
+        }
+
         TmdbCredit::where('tmdb_movie_id', '=', $this->id)->delete();
         TmdbCredit::upsert($credits, ['tmdb_person_id', 'tmdb_movie_id', 'tmdb_tv_id', 'occupation_id', 'character']);
 
@@ -113,5 +144,9 @@ class ProcessMovieJob implements ShouldQueue
             ->where('tmdb_movie_id', '=', $this->id)
             ->whereRelation('category', 'movie_meta', '=', true)
             ->searchable();
+
+        // TMDB caches their api responses for 8 hours, so don't abuse them
+
+        cache()->put("tmdb-movie-scraper:{$this->id}", now(), 8 * 3600);
     }
 }

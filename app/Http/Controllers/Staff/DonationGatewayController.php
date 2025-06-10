@@ -31,7 +31,7 @@ class DonationGatewayController extends Controller
     {
         abort_unless($request->user()->group->is_owner, 403);
 
-        return view('Staff.donation_gateway.index', ['gateways' => DonationGateway::orderBy('position')->paginate(25)]);
+        return view('Staff.donation-gateway.index', ['gateways' => DonationGateway::orderBy('position')->paginate(25)]);
     }
 
     /**
@@ -41,7 +41,7 @@ class DonationGatewayController extends Controller
     {
         abort_unless($request->user()->group->is_owner, 403);
 
-        return view('Staff.donation_gateway.create');
+        return view('Staff.donation-gateway.create');
     }
 
     /**
@@ -64,7 +64,7 @@ class DonationGatewayController extends Controller
     {
         abort_unless($request->user()->group->is_owner, 403);
 
-        return view('Staff.donation_gateway.edit', ['gateway' => $gateway]);
+        return view('Staff.donation-gateway.edit', ['gateway' => $gateway]);
     }
 
     /**

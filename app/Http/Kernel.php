@@ -29,9 +29,9 @@ class Kernel extends HttpKernel
      */
     protected $middleware = [
         // Default Laravel
-        Middleware\PreventRequestsDuringMaintenance::class,
+        \Illuminate\Foundation\Http\Middleware\PreventRequestsDuringMaintenance::class,
         \Illuminate\Foundation\Http\Middleware\ValidatePostSize::class,
-        Middleware\TrimStrings::class,
+        \Illuminate\Foundation\Http\Middleware\TrimStrings::class,
         \Illuminate\Foundation\Http\Middleware\ConvertEmptyStringsToNull::class,
         //\App\Http\Middleware\TrustProxies::class,
         \Illuminate\Http\Middleware\HandleCors::class,
@@ -45,25 +45,25 @@ class Kernel extends HttpKernel
      */
     protected $middlewareGroups = [
         'web' => [
-            Middleware\EncryptCookies::class,
+            \Illuminate\Cookie\Middleware\EncryptCookies::class,
             \Illuminate\Cookie\Middleware\AddQueuedCookiesToResponse::class,
             \Illuminate\Session\Middleware\StartSession::class,
             \Illuminate\Session\Middleware\AuthenticateSession::class,
             \Illuminate\View\Middleware\ShareErrorsFromSession::class,
             \Illuminate\Routing\Middleware\SubstituteBindings::class,
-            Middleware\VerifyCsrfToken::class,
+            \Illuminate\Foundation\Http\Middleware\VerifyCsrfToken::class,
             Middleware\UpdateLastAction::class,
             \HDVinnie\SecureHeaders\SecureHeadersMiddleware::class,
             'throttle:web',
         ],
         'chat' => [
-            Middleware\EncryptCookies::class,
+            \Illuminate\Cookie\Middleware\EncryptCookies::class,
             \Illuminate\Cookie\Middleware\AddQueuedCookiesToResponse::class,
             \Illuminate\Session\Middleware\StartSession::class,
             \Illuminate\Session\Middleware\AuthenticateSession::class,
             \Illuminate\View\Middleware\ShareErrorsFromSession::class,
             \Illuminate\Routing\Middleware\SubstituteBindings::class,
-            Middleware\VerifyCsrfToken::class,
+            \Illuminate\Foundation\Http\Middleware\VerifyCsrfToken::class,
             Middleware\UpdateLastAction::class,
             \HDVinnie\SecureHeaders\SecureHeadersMiddleware::class,
             'throttle:chat',
@@ -88,14 +88,14 @@ class Kernel extends HttpKernel
      */
     protected $middlewareAliases = [
         'admin'            => Middleware\CheckForAdmin::class,
-        'auth'             => Middleware\Authenticate::class,
+        'auth'             => \Illuminate\Auth\Middleware\Authenticate::class,
         'auth.basic'       => \Illuminate\Auth\Middleware\AuthenticateWithBasicAuth::class,
         'banned'           => Middleware\CheckIfBanned::class,
         'bindings'         => \Illuminate\Routing\Middleware\SubstituteBindings::class,
         'cache.headers'    => \Illuminate\Http\Middleware\SetCacheHeaders::class,
         'can'              => \Illuminate\Auth\Middleware\Authorize::class,
-        'csrf'             => Middleware\VerifyCsrfToken::class,
-        'guest'            => Middleware\RedirectIfAuthenticated::class,
+        'csrf'             => \Illuminate\Foundation\Http\Middleware\VerifyCsrfToken::class,
+        'guest'            => \Illuminate\Auth\Middleware\RedirectIfAuthenticated::class,
         'language'         => Middleware\SetLanguage::class,
         'modo'             => Middleware\CheckForModo::class,
         'owner'            => Middleware\CheckForOwner::class,

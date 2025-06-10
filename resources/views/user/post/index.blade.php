@@ -19,6 +19,8 @@
     @include('user.buttons.user')
 @endsection
 
+@section('page', 'page__user-post--index')
+
 @section('main')
     @if (auth()->user()->isAllowed($user, 'forum', 'show_post'))
         <section class="panelV2">

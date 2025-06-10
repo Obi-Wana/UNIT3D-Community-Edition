@@ -14,6 +14,8 @@
     </li>
 @endsection
 
+@section('page', 'page__staff-wiki--create')
+
 @section('main')
     <section class="panelV2">
         <h2 class="panel__heading">

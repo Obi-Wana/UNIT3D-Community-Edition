@@ -23,7 +23,7 @@
     </li>
 @endsection
 
-@section('page', 'page__article--edit')
+@section('page', 'page__staff-article--edit')
 
 @section('main')
     <section class="panelV2">

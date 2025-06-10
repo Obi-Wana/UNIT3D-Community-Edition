@@ -19,6 +19,8 @@
     @include('user.buttons.user')
 @endsection
 
+@section('page', 'page__user-invite--index')
+
 @section('main')
     <section class="panelV2">
         <header class="panel__header">
@@ -57,7 +59,7 @@
                     @forelse ($invites as $invite)
                         <tr>
                             <td>
-                                <x-user_tag :user="$invite->sender" :anon="false" />
+                                <x-user-tag :user="$invite->sender" :anon="false" />
                             </td>
                             <td>{{ $invite->email }}</td>
                             @if (auth()->user()->group->is_modo)
@@ -83,7 +85,7 @@
                             </td>
                             <td>
                                 @if ($invite->accepted_by !== null && $invite->accepted_by !== 1)
-                                    <x-user_tag :user="$invite->receiver" :anon="false" />
+                                    <x-user-tag :user="$invite->receiver" :anon="false" />
                                 @else
                                     N/A
                                 @endif

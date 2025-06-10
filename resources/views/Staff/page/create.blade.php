@@ -16,7 +16,7 @@
     </li>
 @endsection
 
-@section('page', 'page__page-admin--create')
+@section('page', 'page__staff-page--create')
 
 @section('main')
     <section class="panelV2">

@@ -1,4 +1,4 @@
-# UNIT3D Open Source: How to Share Your Source Code
+# UNIT3D open source: how to share your source code
 
 _A guide by EkoNesLeg_
 
@@ -6,13 +6,13 @@ _A guide by EkoNesLeg_
 
 As part of complying with the [GNU Affero General Public License (AGPL)](https://github.com/HDInnovations/UNIT3D-Community-Edition/blob/master/LICENSE), sites that modify and distribute UNIT3D are required to share their source code. This guide provides an easy process for creating a sanitized tarball of your modified source code and encourages you to create and update an "Open Source" page on your site to make this code available.
 
-## 2. Setting Up Tarball Creation
+## 2. Setting up tarball creation
 
-### 2.1 Exclude Sensitive Files
+### 2.1 Exclude sensitive files
 
 To create a tarball that includes only the modified source code and excludes sensitive files like configuration data, you can take advantage of the existing `.gitignore` file in your UNIT3D deployment. Here’s how:
 
-1. **Reference `.gitignore` for Exclusions:**
+1. **Reference `.gitignore` for exclusions:**
 
    If your production environment has the original `.gitignore` file that already lists the files and directories you don’t want to include in version control, you can use it to exclude those same items from your tarball:
 
@@ -20,7 +20,7 @@ To create a tarball that includes only the modified source code and excludes sen
    ln -s /var/www/html/.gitignore /var/www/html/.tarball_exclude
    ```
 
-2. **Additional Exclusions (if needed):**
+2. **Additional exclusions (if needed):**
 
    If additional exclusions are needed, or if you've removed the git environment from your production environment, you should manually add the exclusions to the `.tarball_exclude` file:
 
@@ -82,7 +82,7 @@ To create a tarball that includes only the modified source code and excludes sen
    ```
 <!-- cspell:enable -->
 
-### 2.2 Create the Tarball
+### 2.2 Create the tarball
 
 1. **Create a script to generate the tarball:**
 
@@ -116,22 +116,22 @@ To create a tarball that includes only the modified source code and excludes sen
     /var/www/html/create_tarball.sh
     ```
 
-## 3. Creating and Updating the Open Source Page
+## 3. Creating and updating the "Open source" Page
 
-1. **Create an Open Source page:**
+1. **Create an "Open source" page:**
 
-    Go to your site's `/dashboard/pages` section and create a new page called "Open Source."
+    Go to your site's `/dashboard/pages` section and create a new page called "Open source."
 
 2. **Add the following Markdown content to the page:**
 
     ```markdown
-    ## Open Source
+    ## Open source
 
     We comply with the UNIT3D's GNU Affero General Public License (AGPL) by sharing our modified source code. You can download the latest version of our source code below.
 
     - **[Download Latest Source Code](/UNIT3D_Source_LATEST.tar.gz)**
 
-    ### License Information
+    ### License information
 
     Our site runs on a modified version of [UNIT3D](https://github.com/HDInnovations/UNIT3D-Community-Edition). For more details on the license, visit the [GNU AGPL License](https://github.com/HDInnovations/UNIT3D-Community-Edition/blob/master/LICENSE).
     ```
@@ -140,6 +140,6 @@ To create a tarball that includes only the modified source code and excludes sen
 
     After running the tarball creation script, update the page content if necessary to reflect any changes or additional notes about the modifications made.
 
-## 4. Encouraging Compliance and Contributions
+## 4. Encouraging compliance and contributions
 
 By publicly sharing your modified source code, you not only comply with the AGPL but also contribute to the open-source community. We encourage sites to contribute their changes back to the upstream repository by submitting pull requests, which helps improve UNIT3D for everyone.

@@ -35,7 +35,7 @@
     </li>
 @endsection
 
-@section('page', 'page__users--edit')
+@section('page', 'page__staff-user--edit')
 
 @section('main')
     <section class="panelV2">

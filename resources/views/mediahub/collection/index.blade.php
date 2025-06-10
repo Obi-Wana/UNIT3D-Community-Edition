@@ -19,6 +19,8 @@
     </li>
 @endsection
 
+@section('page', 'page__collection--index')
+
 @section('main')
     @livewire('tmdb-collection-search')
 @endsection

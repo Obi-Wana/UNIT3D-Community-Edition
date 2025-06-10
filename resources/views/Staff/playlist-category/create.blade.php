@@ -16,7 +16,7 @@
     </li>
 @endsection
 
-@section('page', 'page__playlist-category--create')
+@section('page', 'page__staff-playlist-category--create')
 
 @section('main')
     <section class="panelV2">
@@ -45,6 +45,17 @@
                     />
                     <label class="form__label form__label--floating" for="position">
                         {{ __('common.position') }}
+                    </label>
+                </p>
+                <p class="form__group">
+                    <textarea
+                        id="description"
+                        name="description"
+                        class="form__textarea"
+                        placeholder=" "
+                    ></textarea>
+                    <label class="form__label form__label--floating" for="description">
+                        {{ __('common.description') }}
                     </label>
                 </p>
                 <p class="form__group">

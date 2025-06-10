@@ -27,7 +27,7 @@
     </li>
 @endsection
 
-@section('page', 'page__chat-status--index')
+@section('page', 'page__staff-chat-status--index')
 
 @section('main')
     <section class="panelV2">

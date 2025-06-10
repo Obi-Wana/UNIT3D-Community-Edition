@@ -14,6 +14,8 @@
     </li>
 @endsection
 
+@section('page', 'page__torrent-pending--index')
+
 @section('main')
     <section class="panelV2">
         <h2 class="panel__heading">{{ __('common.pending-torrents') }}</h2>

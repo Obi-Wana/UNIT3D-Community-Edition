@@ -9,7 +9,7 @@
     <li class="breadcrumb--active">Playlist Categories</li>
 @endsection
 
-@section('page', 'page__category--index')
+@section('page', 'page__staff-playlist-category--index')
 
 @section('main')
     <section class="panelV2">
@@ -33,6 +33,7 @@
                         <th>ID</th>
                         <th>{{ __('common.position') }}</th>
                         <th>{{ __('common.name') }}</th>
+                        <th>{{ __('common.description') }}</th>
                         <th>{{ __('common.action') }}</th>
                     </tr>
                 </thead>
@@ -48,6 +49,7 @@
                                     {{ $playlistCategory->name }}
                                 </a>
                             </td>
+                            <td>{{ $playlistCategory->description }}</td>
                             <td>
                                 <menu class="data-table__actions">
                                     <li class="data-table__action">

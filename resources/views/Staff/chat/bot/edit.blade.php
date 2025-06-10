@@ -41,7 +41,7 @@
     </li>
 @endsection
 
-@section('page', 'page__chat-bot--edit')
+@section('page', 'page__staff-bot--edit')
 
 @section('main')
     <section class="panelV2">

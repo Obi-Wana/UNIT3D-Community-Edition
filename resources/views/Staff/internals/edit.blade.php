@@ -17,7 +17,7 @@
     </li>
 @endsection
 
-@section('page', 'page__internals--edit')
+@section('page', 'page__staff-internal--edit')
 
 @section('main')
     <section class="panelV2">
@@ -151,7 +151,7 @@
                         <tr>
                             <td>{{ $user->pivot->position }}</td>
                             <td>
-                                <x-user_tag :user="$user" :anon="false" />
+                                <x-user-tag :user="$user" :anon="false" />
                             </td>
                             <td>
                                 <time

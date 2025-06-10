@@ -163,7 +163,7 @@
                 alt=""
             />
         </figure>
-        <x-user_tag class="post__author" :anon="false" :user="$post->user">
+        <x-user-tag class="post__author" :anon="false" :user="$post->user">
             <x-slot:appended-icons>
                 @if ($post->user->isOnline())
                     <i
@@ -182,7 +182,7 @@
                     <i class="{{ config('other.font-awesome') }} fa-envelope text-info"></i>
                 </a>
             </x-slot>
-        </x-user_tag>
+        </x-user-tag>
         @if (! empty($post->user->title))
             <p class="post__author-title">
                 {{ $post->user->title }}

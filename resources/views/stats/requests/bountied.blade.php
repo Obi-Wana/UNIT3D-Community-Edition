@@ -52,7 +52,7 @@
                                         class="{{ config('other.font-awesome') }} fa-times-circle text-danger"
                                         title="{{ __('stat.request-not-fulfilled') }}"
                                     ></i>
-                                @elseif ($request->torrent_id !== null && $request->approved_by === null)
+                                @elseif ($request->torrent_id !== null && $request->approved_when === null)
                                     <i
                                         class="{{ config('other.font-awesome') }} fa-question-circle text-info"
                                         title="{{ __('stat.request-pending-aproval') }}"

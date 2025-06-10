@@ -9,6 +9,8 @@
     <li class="breadcrumb--active">Donations</li>
 @endsection
 
+@section('page', 'page__staff-donation--index')
+
 @section('main')
     <section class="panelV2">
         <header class="panel__header">
@@ -49,7 +51,7 @@
                         <tr>
                             <td>{{ $donation->created_at }}</td>
                             <td>
-                                <x-user_tag :user="$donation->user" :anon="false" />
+                                <x-user-tag :user="$donation->user" :anon="false" />
                             </td>
                             <td style="max-width: 80ch; word-wrap: break-word; white-space: normal">
                                 {{ $donation->transaction }}

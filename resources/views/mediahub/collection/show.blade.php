@@ -24,6 +24,8 @@
     </li>
 @endsection
 
+@section('page', 'page__collection--show')
+
 @section('main')
     <section class="meta">
         @if ($collection?->backdrop)

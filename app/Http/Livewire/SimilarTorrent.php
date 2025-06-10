@@ -21,6 +21,7 @@ use App\Models\Category;
 use App\Models\Distributor;
 use App\Models\History;
 use App\Models\IgdbGame;
+use App\Models\PlaylistCategory;
 use App\Models\TmdbMovie;
 use App\Models\Region;
 use App\Models\Resolution;
@@ -395,10 +396,52 @@ class SimilarTorrent extends Component
             ->where('category_id', '=', $this->category->id)
             ->when(
                 $this->hideFilledRequests,
-                fn ($query) => $query->where(fn ($query) => $query->whereDoesntHave('torrent')->orWhereDoesntHave('approver'))
+                fn ($query) => $query->where(fn ($query) => $query->whereNull('torrent_id')->orWhereNull('approved_when'))
             )
             ->latest()
             ->get();
+    }
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Collection<int, PlaylistCategory>
+     */
+    #[Computed]
+    final public function playlistCategories(): \Illuminate\Database\Eloquent\Collection
+    {
+        return PlaylistCategory::query()
+            ->with([
+                'playlists' => fn ($query) => $query
+                    ->withCount('torrents')
+                    ->when(
+                        ! auth()->user()->group->is_modo,
+                        fn ($query) => $query
+                            ->where(
+                                fn ($query) => $query
+                                    ->where('is_private', '=', 0)
+                                    ->orWhere(fn ($query) => $query->where('is_private', '=', 1)->where('user_id', '=', auth()->id()))
+                            )
+                    )
+                    ->when($this->category->movie_meta, fn ($query) => $query->whereRelation('torrents', 'tmdb_movie_id', '=', $this->tmdbId))
+                    ->when($this->category->tv_meta, fn ($query) => $query->whereRelation('torrents', 'tmdb_tv_id', '=', $this->tmdbId))
+                    ->when($this->category->game_meta, fn ($query) => $query->whereRelation('torrents', 'igdb', '=', $this->tmdbId))
+                    ->when(!($this->category->movie_meta || $this->category->tv_meta || $this->category->game_meta), fn ($query) => $query->whereRaw('0 = 1'))
+            ])
+            ->orderBy('position')
+            ->get()
+            ->filter(fn ($category) => $category->playlists->isNotEmpty());
+    }
+
+    /**
+     * @return ?\Illuminate\Database\Eloquent\Collection<int, TmdbMovie>
+     */
+    #[Computed]
+    final public function collectionMovies(): ?\Illuminate\Database\Eloquent\Collection
+    {
+        if (!$this->work instanceof TmdbMovie) {
+            return null;
+        }
+
+        return $this->work->collections()->first()?->movies()->get();
     }
 
     final public function alertConfirm(): void
@@ -538,15 +581,17 @@ class SimilarTorrent extends Component
     final public function render(): \Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View|\Illuminate\Contracts\Foundation\Application
     {
         return view('livewire.similar-torrent', [
-            'user'              => auth()->user(),
-            'similarTorrents'   => $this->torrents,
-            'personalFreeleech' => $this->personalFreeleech,
-            'torrentRequests'   => $this->torrentRequests,
-            'media'             => $this->work,
-            'types'             => $this->types,
-            'resolutions'       => $this->resolutions,
-            'regions'           => $this->regions,
-            'distributors'      => $this->distributors,
+            'user'               => auth()->user(),
+            'similarTorrents'    => $this->torrents,
+            'personalFreeleech'  => $this->personalFreeleech,
+            'torrentRequests'    => $this->torrentRequests,
+            'media'              => $this->work,
+            'types'              => $this->types,
+            'resolutions'        => $this->resolutions,
+            'regions'            => $this->regions,
+            'distributors'       => $this->distributors,
+            'playlistCategories' => $this->playlistCategories,
+            'collectionMovies'   => $this->collectionMovies,
         ]);
     }
 }

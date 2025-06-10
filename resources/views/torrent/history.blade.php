@@ -49,6 +49,8 @@
     @endif
 @endsection
 
+@section('page', 'page__torrent-history--index')
+
 @section('main')
     <section class="panelV2">
         <header class="panel__header">
@@ -87,7 +89,7 @@
                     @foreach ($histories as $history)
                         <tr>
                             <td>
-                                <x-user_tag
+                                <x-user-tag
                                     :user="$history->user"
                                     :anon="
                                         $history->user->privacy?->hidden

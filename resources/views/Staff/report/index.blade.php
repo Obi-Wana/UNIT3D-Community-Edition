@@ -19,7 +19,7 @@
     </li>
 @endsection
 
-@section('page', 'page__report--index')
+@section('page', 'page__staff-report--index')
 
 @section('main')
     @livewire('report-search')

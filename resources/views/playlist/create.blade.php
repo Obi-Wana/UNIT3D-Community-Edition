@@ -1,4 +1,4 @@
-@extends('layout.with-main')
+@extends('layout.with-main-and-sidebar')
 
 @section('title')
     <title>{{ __('playlist.title') }} - {{ config('other.title') }}</title>
@@ -93,5 +93,27 @@
                 </p>
             </form>
         </div>
+    </section>
+@endsection
+
+@section('sidebar')
+    <section class="panelV2">
+        <h2 class="panel__heading">{{ __('torrent.categories') }}</h2>
+        <table class="data-table">
+            <thead>
+                <tr>
+                    <th>{{ __('torrent.category') }}</th>
+                    <th>{{ __('torrent.description') }}</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach ($playlistCategories as $playlistCategory)
+                    <tr>
+                        <td>{{ $playlistCategory->name }}</td>
+                        <td>{{ $playlistCategory->description }}</td>
+                    </tr>
+                @endforeach
+            </tbody>
+        </table>
     </section>
 @endsection

@@ -20,7 +20,7 @@
     @include('user.buttons.user')
 @endsection
 
-@section('page', 'page__bonus--store')
+@section('page', 'page__user-transaction--create')
 
 @section('main')
     <section class="panelV2">

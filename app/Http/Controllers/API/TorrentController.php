@@ -426,8 +426,8 @@ class TorrentController extends BaseController
             Keyword::upsert($keywords->toArray(), ['torrent_id', 'name']);
         }
 
-        // check for trusted user and update torrent
-        if ($user->group->is_trusted) {
+        // check for trusted user & mod queue isn't opted in and update torrent
+        if ($user->group->is_trusted && !$request->boolean('mod_queue_opt_in')) {
             $appurl = config('app.url');
             $user = $torrent->user;
             $username = $user->username;

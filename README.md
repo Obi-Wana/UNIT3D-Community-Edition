@@ -5,13 +5,16 @@
 </h1>
 
 <p align="center">
-    <a href="http://laravel.com"><img src="https://img.shields.io/badge/Laravel-11-f4645f.svg" /></a>
+    <a href="http://laravel.com"><img src="https://img.shields.io/badge/Laravel-12-f4645f.svg" /></a>
     <a href="https://github.com/HDInnovations/UNIT3D/blob/master/LICENSE"><img src="https://img.shields.io/badge/License-AGPL%20v3.0-yellow.svg" /></a>
     <a href="https://github.com/HDInnovations/UNIT3D-Community-Edition/actions/workflows/lint.yml/badge.svg?branch=master"><img src="https://github.com/HDInnovations/UNIT3D-Community-Edition/actions/workflows/lint.yml/badge.svg?branch=master" /></a>
     <a href="https://github.com/HDInnovations/UNIT3D-Community-Edition/actions/workflows/phpunit-test.yml/badge.svg?branch=master"><img src="https://github.com/HDInnovations/UNIT3D-Community-Edition/actions/workflows/phpunit-test.yml/badge.svg?branch=master" /></a>
     <a href="https://github.com/HDInnovations/UNIT3D-Community-Edition/actions/workflows/compile-assets-test.yml/badge.svg?branch=master"><img src="https://github.com/HDInnovations/UNIT3D-Community-Edition/actions/workflows/compile-assets-test.yml/badge.svg?branch=master" /></a>
     <a href="https://github.com/HDInnovations/UNIT3D-Community-Edition/actions/workflows/larastan.yml/badge.svg?branch=master"><img src="https://github.com/HDInnovations/UNIT3D-Community-Edition/actions/workflows/larastan.yml/badge.svg?branch=master" /></a>
     <a href="https://github.com/HDInnovations/UNIT3D-Community-Edition/actions/workflows/prettier-blade.yml/badge.svg?branch=master"><img src="https://github.com/HDInnovations/UNIT3D-Community-Edition/actions/workflows/prettier-blade.yml/badge.svg?branch=master" /></a>
+    <a href="https://hosted.weblate.org/engage/unit3d/">
+    <img src="https://hosted.weblate.org/widget/unit3d/svg-badge.svg" alt="Translation status" />
+    </a>
 </p>
 
 <p align="center">
@@ -24,16 +27,17 @@
 2. [Installation](#installation)
 3. [Updating](#updating)
 4. [Contributing](#contributing)
-5. [License](#license)
-6. [Services](#services)
-7. [Discord](#discord)
-8. [Donations](#donations)
-9. [Shoutouts](#shoutouts)
+5. [Translations](#translations)
+6. [License](#license)
+7. [Services](#services)
+8. [Discord](#discord)
+9. [Donations](#donations)
+10. [Shoutouts](#shoutouts)
 
 
 ## <a name="introduction"></a> 🧐 Introduction
 
-We have been developing a Private Torrent Tracker Software called `UNIT3D` (pronounced "united"). This is a PHP software based on Laravel 11, Livewire and AlpineJS. It is MySQL Strict Mode Compliant, and PHP 8.4 Ready. It uses an MVC Architecture to ensure clarity between logic and presentation.
+UNIT3D (pronounced "united") is a modern Private Torrent Tracker software built with Laravel, Livewire and AlpineJS. It offers a feature-rich platform with excellent performance, security and scalability to create and manage a private tracker. It is MySQL Strict Mode Compliant and PHP 8.4 Ready. It uses an MVC Architecture to ensure clarity between logic and presentation.
 
 ## <a name="installation"></a> 🖥️ Installation
 
@@ -43,15 +47,23 @@ No public script or documentation is available at this time.
 
 To update your installation to the latest version, run the following command. This will pull the latest changes from the repository and update your instance:
 
-`php artisan git:update`
+`sudo php artisan git:update`
 
 ## <a name="contributing"></a> 🤝 Contributing
 
-Please read [CONTRIBUTING.md](https://github.com/HDInnovations/UNIT3D-Community-Edition/blob/master/CONTRIBUTING.md) for details on our code of conduct, and the process for submitting pull requests to us.
+Please read [CONTRIBUTING.md](https://github.com/HDInnovations/UNIT3D-Community-Edition/blob/master/CONTRIBUTING.md) for details on our code of conduct and the process for submitting pull requests to us.
+
+## <a name="translations"></a> 🌎 Translations
+
+We use Weblate for translations. You can easily contribute to translations at https://hosted.weblate.org/engage/unit3d/. Use the following graphic to see if your native language could use some work.
+
+<a href="https://hosted.weblate.org/engage/unit3d/">
+<img src="https://hosted.weblate.org/widget/unit3d/horizontal-auto.svg" alt="Translation status" />
+</a>
 
 ## <a name="license"></a> 📜 License
 
-This project is licensed under the AGPL v3.0 License - see the [LICENSE](https://github.com/HDInnovations/UNIT3D-Community-Edition/blob/master/LICENSE.md) file for details.
+This project is licensed under the AGPL v3.0 License. See the [LICENSE](https://github.com/HDInnovations/UNIT3D-Community-Edition/blob/master/LICENSE.md) file for details.
 
 ## <a name="services"></a> 🛠️ Services
 
@@ -67,15 +79,14 @@ If you would like to support the development of UNIT3D, please consider donating
 
 *Donations are non-refundable and made voluntarily without exchange of goods or services. It is support the project as a whole.*
 
-### **Credit / Debit (Square)**
+#### You can donate via Square payment processor using the following link:
 
-<a href="https://square.link/u/VjB1CNfm" target="_blank"><img alt="unit3d-donate.png" src="public/img/unit3d-donate.png" width="200px"/></a>&nbsp;&nbsp;&nbsp;
-<img alt="unit3d-qr-code.png" src="public/img/unit3d-qr-code.png" width="169px"/>
+[Donate via Square](https://square.link/u/VjB1CNfm)
 
-### **Crypto**
+#### You can also donate via BTC cryptocurrency using the following addresses:
 
-- **Bitcoin (BTC):** `bc1qzgrgfrw2y4x20ywzu49q50ptxg8jeuqv3tmx9v`
-- **Bitcoin via Email (Proton Wallet Only):** `hdinnovations@protonmail.com`
+- Bitcoin (BTC): `bc1qzgrgfrw2y4x20ywzu49q50ptxg8jeuqv3tmx9v`
+- Bitcoin via Email (Proton Wallet Only): `hdinnovations@protonmail.com`
 
 ## <a name="shoutouts"></a> 🎉 Shoutouts
 
@@ -86,16 +97,6 @@ We would like to extend our heartfelt thanks to the following companies, sites a
 <!-- cspell:disable-next-line -->
 **airclay**, **Henriette**, **Jocelyn**, **Marcus**, **Poppers**, **sam**, **samual**, **schizobolic**, **x64**
 
-### 🌐 Sites
-<img src="https://i.postimg.cc/BQJmGYMt/blu.png" height="30px;">&nbsp;
-<img src="https://i.postimg.cc/PrK2fWRy/tik.png" height="30px;">&nbsp;
-<img src="https://i.postimg.cc/zDCx6Zw9/fnp.png" height="27px;">&nbsp;
-
 ### 🏢 Companies
 <a href="https://scoutapm.com/?utm_source=github&utm_medium=referral&utm_campaign=opensource_referral"><img src="https://i.postimg.cc/g29XCJDh/Logo-rounded-square-495x495-1.png" height="30px;"></a>&nbsp;
 <a href="https://www.jetbrains.com/?from=UNIT3D"><img src="https://i.imgur.com/KgDXZV8.png" height="30px;"></a>&nbsp;
-
-
-
-
-

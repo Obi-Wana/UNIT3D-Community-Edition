@@ -72,7 +72,7 @@
                                 <td>{{ $torrentRequest->type->name }}</td>
                                 <td>{{ $torrentRequest->resolution->name ?? 'Unknown' }}</td>
                                 <td>
-                                    <x-user_tag
+                                    <x-user-tag
                                         :user="$torrentRequest->user"
                                         :anon="$torrentRequest->anon"
                                     />
@@ -95,7 +95,7 @@
                                             {{ __('request.claimed') }}
 
                                             @break
-                                        @case($torrentRequest->torrent_id !== null && $torrentRequest->approved_by === null)
+                                        @case($torrentRequest->torrent_id !== null && $torrentRequest->approved_when === null)
                                             <i class="fas fa-circle text-purple"></i>
                                             {{ __('request.pending') }}
 

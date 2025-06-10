@@ -59,13 +59,33 @@ class Playlist extends Model
     }
 
     /**
+     * Belongs to a Category.
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo<PlaylistCategory, $this>
+     */
+    public function playlistCategory(): \Illuminate\Database\Eloquent\Relations\BelongsTo
+    {
+        return $this->belongsTo(PlaylistCategory::class);
+    }
+
+    /**
      * Has Many Torrents.
      *
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany<Torrent, $this>
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany<Torrent, $this, PlaylistTorrent>
      */
     public function torrents(): \Illuminate\Database\Eloquent\Relations\BelongsToMany
     {
         return $this->belongsToMany(Torrent::class, 'playlist_torrents')->using(PlaylistTorrent::class)->withPivot('id')->withTimestamps();
+    }
+
+    /**
+     * Has Many Torrents.
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany<PlaylistSuggestion, $this>
+     */
+    public function suggestions(): \Illuminate\Database\Eloquent\Relations\HasMany
+    {
+        return $this->hasMany(PlaylistSuggestion::class);
     }
 
     /**

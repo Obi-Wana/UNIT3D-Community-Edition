@@ -16,7 +16,7 @@
     </li>
 @endsection
 
-@section('page', 'page__chat-room--create')
+@section('page', 'page__staff-chat-room--create')
 
 @section('main')
     <section class="panelV2">

@@ -112,7 +112,7 @@
     <footer class="torrent-card__footer">
         <div class="torrent-card__left-footer">
             <address class="torrent-card__uploader">
-                <x-user_tag :anon="$torrent->anon" :user="$torrent->user" />
+                <x-user-tag :anon="$torrent->anon" :user="$torrent->user" />
             </address>
             <span class="torrent-card__meta-separator">&bull;</span>
             <time title="{{ $torrent->created_at }}" datetime="{{ $torrent->created_at }}">

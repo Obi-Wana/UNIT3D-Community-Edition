@@ -19,6 +19,8 @@
     @include('user.buttons.user')
 @endsection
 
+@section('page', 'page__user-following--index')
+
 @section('main')
     @if (auth()->id() === $user->id || auth()->user()->group->is_modo)
         <section class="panelV2">
@@ -43,7 +45,7 @@
                                     />
                                 </td>
                                 <td>
-                                    <x-user_tag :anon="false" :user="$following" />
+                                    <x-user-tag :anon="false" :user="$following" />
                                 </td>
                                 <td>{{ $following->follow->created_at }}</td>
                             </tr>

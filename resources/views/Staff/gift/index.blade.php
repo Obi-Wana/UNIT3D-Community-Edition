@@ -22,7 +22,7 @@
     </li>
 @endsection
 
-@section('page', 'page__gift-log--index')
+@section('page', 'page__staff-gift--index')
 
 @section('main')
     @livewire('gift-log-search')

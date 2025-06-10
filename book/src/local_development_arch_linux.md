@@ -9,7 +9,7 @@ This guide outlines the steps to set up UNIT3D using Laravel Sail on Arch Linux.
 > [!IMPORTANT]
 > This guide is intended for local development environments only and is not suitable for production deployment.
 
-## Modifying `.env` and Secure Headers for Non-HTTPS Instances
+## Modifying `.env` and secure headers for non-HTTPS instances
 
 For local development, HTTP is commonly used instead of HTTPS. To prevent mixed content issues, adjust your `.env` file as follows:
 
@@ -38,7 +38,7 @@ Refer to the [Arch Linux Docker documentation](https://wiki.archlinux.org/title/
 sudo pacman -S docker docker-compose
 ```
 
-## Step 1: Clone the Repository
+## Step 1: clone the repository
 
 Clone the UNIT3D repository to your local environment:
 
@@ -54,7 +54,7 @@ Clone the UNIT3D repository to your local environment:
     git clone git@github.com:HDInnovations/UNIT3D-Community-Edition.git
     ```
 
-## Step 2: Composer Dependency Installation
+## Step 2: Composer dependency installation
 
 1. **Change to the project’s root directory:**
 
@@ -70,9 +70,9 @@ Clone the UNIT3D repository to your local environment:
     composer install
     ```
 
-## Step 3: Docker Environment Initialization
+## Step 3: Docker environment initialization
 
-1. **Switch to Branch 8.x.x:**
+1. **Switch to branch 8.x.x:**
 
     Before starting Docker, switch to the `8.x.x` branch:
 
@@ -86,7 +86,7 @@ Clone the UNIT3D repository to your local environment:
     ./vendor/bin/sail up -d
     ```
 
-## Step 4: App Key Generation
+## Step 4: app key generation
 
 Generate a new `APP_KEY` in the `.env` file for encryption:
 
@@ -96,7 +96,7 @@ Generate a new `APP_KEY` in the `.env` file for encryption:
 
 **Note**: If you are importing a database backup, make sure to set the `APP_KEY` in the `.env` file to match the key used when the backup was created.
 
-## Step 5: Database Migrations and Seeders
+## Step 5: database migrations and seeders
 
 Initialize your database with sample data by running migrations and seeders:
 
@@ -107,13 +107,13 @@ Initialize your database with sample data by running migrations and seeders:
 > [!IMPORTANT]
 > This operation resets your database and seeds it with default data. Avoid running this in a production environment.
 
-## Step 6: Database Preparation
+## Step 6: database preparation
 
-### Initial Database Loading
+### Initial database loading
 
 Prepare your database with the initial schema and data. Make sure you have a database dump file, such as `prod-site-backup.sql`.
 
-### MySQL Data Importation
+### MySQL data importation
 
 Import your database dump into MySQL within the Docker environment:
 
@@ -123,7 +123,7 @@ Import your database dump into MySQL within the Docker environment:
 
 **Note**: Ensure that the `APP_KEY` in the `.env` file matches the key used in your deployment environment for compatibility.
 
-## Step 7: NPM Dependency Management
+## Step 7: NPM dependency management
 
 Manage Node.js dependencies and compile assets within the Docker environment:
 
@@ -138,7 +138,7 @@ If needed, refresh the Node.js environment:
 ./vendor/bin/sail rm -rf node_modules && bun pm cache rm && bun install && bun run build
 ```
 
-## Step 8: Application Cache Configuration
+## Step 8: application cache configuration
 
 Optimize the application's performance by setting up the cache:
 
@@ -146,7 +146,7 @@ Optimize the application's performance by setting up the cache:
 ./vendor/bin/sail artisan set:all_cache
 ```
 
-## Step 9: Environment Restart
+## Step 9: environment restart
 
 Apply new configurations or restart the environment by toggling the Docker environment:
 
@@ -154,43 +154,43 @@ Apply new configurations or restart the environment by toggling the Docker envir
 ./vendor/bin/sail restart && ./vendor/bin/sail artisan queue:restart
 ```
 
-## Additional Notes
+## Additional notes
 
 - **Permissions**: Use `sudo` cautiously to avoid permission conflicts, particularly with Docker commands that require elevated access.
 
-### Appendix: Sail Commands for UNIT3D
+### Appendix: Sail commands for UNIT3D
 
 This section provides a reference for managing and interacting with UNIT3D using Laravel Sail.
 
-#### Docker Management
+#### Docker management
 
-- **Start Environment**:
+- **Start environment**:
   ```bash
   ./vendor/bin/sail up -d
   ```
   Starts Docker containers in detached mode.
 
-- **Stop Environment**:
+- **Stop environment**:
   ```bash
   ./vendor/bin/sail down
   ```
   Stops and removes Docker containers.
 
-- **Restart Environment**:
+- **Restart environment**:
   ```bash
   ./vendor/bin/sail restart
   ```
   Applies changes by restarting the Docker environment.
 
-#### Dependency Management
+#### Dependency management
 
-- **Install Composer Dependencies**:
+- **Install Composer dependencies**:
   ```bash
   ./vendor/bin/sail composer install
   ```
   Installs PHP dependencies defined in `composer.json`.
 
-- **Update Composer Dependencies**:
+- **Update Composer dependencies**:
   ```bash
   ./vendor/bin/sail composer update
   ```
@@ -198,55 +198,55 @@ This section provides a reference for managing and interacting with UNIT3D using
 
 #### Laravel Artisan
 
-- **Run Migrations**:
+- **Run migrations**:
   ```bash
   ./vendor/bin/sail artisan migrate
   ```
   Executes database migrations.
 
-- **Seed Database**:
+- **Seed database**:
   ```bash
   ./vendor/bin/sail artisan db:seed
   ```
   Seeds the database with predefined data.
 
-- **Refresh Database**:
+- **Refresh database**:
   ```bash
   ./vendor/bin/sail artisan migrate:fresh --seed
   ```
   Resets and seeds the database.
 
-- **Cache Configurations**:
+- **Cache configurations**:
   ```bash
   ./vendor/bin/sail artisan set:all_cache
   ```
   Clears and caches configurations for performance.
 
-#### NPM and Assets
+#### NPM and assets
 
-- **Install NPM Dependencies**:
+- **Install NPM dependencies**:
   ```bash
   ./vendor/bin/sail bun install
   ```
   Installs Node.js dependencies.
 
-- **Compile Assets**:
+- **Compile assets**:
   ```bash
   ./vendor/bin/sail bun run build
   ```
   Compiles CSS and JavaScript assets.
 
-#### Database Operations
+#### Database operations
 
-- **MySQL Interaction**:
+- **MySQL interaction**:
   ```bash
   ./vendor/bin/sail mysql -u root -p
   ```
   Opens MySQL CLI for database interaction.
 
-#### Queue Management
+#### Queue management
 
-- **Restart Queue Workers**:
+- **Restart queue workers**:
   ```bash
   ./vendor/bin/sail artisan queue:restart
   ```
@@ -254,13 +254,13 @@ This section provides a reference for managing and interacting with UNIT3D using
 
 #### Troubleshooting
 
-- **View Logs**:
+- **View logs**:
   ```bash
   ./vendor/bin/sail logs
   ```
   Displays Docker container logs.
 
-- **Run PHPUnit (PEST) Tests**:
+- **Run PHPUnit (PEST) tests**:
   ```bash
   ./vendor/bin/sail artisan test
   ```

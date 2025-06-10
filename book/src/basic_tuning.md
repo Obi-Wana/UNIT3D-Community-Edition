@@ -1,11 +1,11 @@
-# Basic Tuning
+# Basic tuning
 
 <!-- cspell:ignore unixsocket,unixsocketperm,usermod,ondemand,curlopt,cainfo -->
 
 > [!IMPORTANT]
 > These guides are intended for UNIT3D v8.0.0 + instances. While these are better than defaults be careful blindly following them. Proper tuning requires understanding your server, running tests and monitoring the results.
 
-## Redis Single Server
+## Redis single server
 
 | Category       | Severity   | Time To Fix  |
 | -------------  |:----------:| ------------:|
@@ -19,7 +19,7 @@ Based on the Redis official benchmark, you can **improve performance by up to 50
 
 Of course, unix sockets can only be used if both your Laravel application and Redis are running on the same server.
 
-### How To Enable Unix Sockets
+### How to enable unix sockets
 
 First, create the redis folder that the unix socket will be in and set appropriate permissions:
 
@@ -88,7 +88,7 @@ sudo systemctl restart redis
 > Keep in mind that when using unix socket you will now connect to redis-cli in terminal like so: `redis-cli -s /var/run/redis/redis.sock`
 
 
-## MySQL Single Server
+## MySQL single server
 
 | Category       | Severity   | Time To Fix  |
 | -------------  |:----------:| ------------:|
@@ -102,7 +102,7 @@ Based on Percona's benchmark, you can **improve performance by up to 50%** using
 
 Of course, unix sockets can only be used if both your UNIT3D application and database are running on the same server which is by default.
 
-### How To Enable Unix Sockets
+### How to enable unix sockets
 
 First, open your MySQL configuration file.
 
@@ -158,7 +158,7 @@ sudo systemctl restart mysql && sudo systemctl restart php8.3-fpm && sudo system
 - [MySQL Unix Socket Setup](https://www.digitalocean.com/community/tutorials/how-to-troubleshoot-socket-errors-in-mysql)
 - [MySQL Shell Connections Guide](https://dev.mysql.com/doc/mysql-shell/8.0/en/mysql-shell-connection-socket.html)
 
-## Composer Autoloader Optimization
+## Composer autoloader optimization
 
 | Category       | Severity   | Time To Fix  |
 | -------------  |:----------:| ------------:|
@@ -170,7 +170,7 @@ Due to the way PSR-0/4 autoloading rules are defined, the Composer autoloader ch
 
 In production, Composer allows for optimization to convert the PSR-0 and PSR-4 autoloading rules into classmap rules, making autoloading quite a bit faster. In production we also don't need all the require-dev dependencies loaded up!
 
-### How To Optimize?
+### How to optimize?
 It's really simple. SSH to your server and run the following commands.
 ```bash
 composer install --prefer-dist --no-dev
@@ -225,7 +225,7 @@ And there you have it folks. Experiment with these values, depending on the reso
 
 Enjoy! 🖖
 
-## PHP 8 Preloading
+## PHP 8 preloading
 
 | Category       | Severity   | Time To Fix  |
 | -------------  |:----------:| ------------:|
@@ -238,7 +238,7 @@ This is chaining off `Want More Performance? Lets talk about OPCache!` guide. Yo
 
 PHP preloading for PHP >=7.4. Preloading is a feature of php that will pre-compile php functions and classes to opcache. Thus, this becomes available in your programs with out needing to require the files, which improves speed. To read more on php preloading you can see the [opcache.preloading documentation](https://www.php.net/manual/en/opcache.preloading.php).
 
-### Enabling Preloading
+### Enabling preloading
 
 SSH to your server and run the following command. `sudo nano /etc/php/8.3/fpm/php.ini` This is assuming your on PHP 8.3. If not then adjust the command. Once you have the config open search for `preload`.
 
@@ -273,7 +273,7 @@ PHP 8 adds a JIT compiler to PHP's core which has the potential to speed up perf
 
 First of all, the JIT will only work if opcache is enabled, this is the default for most PHP installations, but you should make sure that `opcache.enable` is set to `1` in your php.ini file. Enabling the JIT itself is done by specifying `opcache.jit_buffer_size` in php.ini. **_So I recommend checking the OPcache guide I made first then coming back here._**
 
-### How To Enable JIT
+### How to enable JIT
 SSH to your server and run the following command. `sudo nano /etc/php/8.3/fpm/php.ini` This is assuming your on PHP 8.2. If not then adjust the command. Once you have the config open search for `opcache.jit`.
 
 If you do not get any results then search for `[curl]` you should see the following.
@@ -293,7 +293,7 @@ opcache.jit_buffer_size=256M
 
 Its as simple as that. Save and exit and restart PHP. `sudo systemctl restart php8.2-fpm`
 
-## PM Static
+## PM static
 
 | Category       | Severity   | Time To Fix  |
 | -------------  |:----------:| ------------:|
@@ -314,7 +314,7 @@ Lets give a basic description on what these options are:
 
 The PHP-FPM pm static setting depends heavily on how much free memory your server has. Basically if you are suffering from low server memory, then pm ondemand or dynamic maybe be better options. On the other hand, if you have the memory available you can avoid much of the PHP process manager (PM) overhead by setting pm static to the max capacity of your server. In other words, when you do the math, pm.static should be set to the max amount of PHP-FPM processes that can run without creating memory availability or cache pressure issues. Also, not so high as to overwhelm CPU(s) and have a pile of pending PHP-FPM operations.
 
-### Enabling Static
+### Enabling static
 
 Lets open up our PHP configuration file. `sudo nano /etc/php/8.3/fpm/pool.d/www.conf`
 

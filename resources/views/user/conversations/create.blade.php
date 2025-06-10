@@ -14,7 +14,7 @@
     </li>
 @endsection
 
-@section('page', 'page__conversations--create')
+@section('page', 'page__user-conversation--create')
 
 @section('main')
     <section class="panelV2">

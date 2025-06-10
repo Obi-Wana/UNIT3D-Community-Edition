@@ -45,6 +45,6 @@ class GeneralSettingController extends Controller
     {
         abort_unless($request->user()->is($user), 403);
 
-        return view('user.general_setting.edit', ['user' => $user]);
+        return view('user.general-setting.edit', ['user' => $user]);
     }
 }

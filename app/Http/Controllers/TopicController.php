@@ -87,7 +87,7 @@ class TopicController extends Controller
 
         $forum = Forum::with('category')->authorized(canStartTopic: true)->findOrFail($id);
 
-        return view('forum.forum_topic.create', [
+        return view('forum.forum-topic.create', [
             'forum' => $forum,
         ]);
     }

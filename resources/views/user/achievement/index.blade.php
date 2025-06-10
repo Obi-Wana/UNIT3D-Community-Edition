@@ -21,7 +21,7 @@
     @include('user.buttons.user')
 @endsection
 
-@section('page', 'page__achievements--index')
+@section('page', 'page__user-achievement--index')
 
 @if (auth()->user()->isAllowed($user, 'achievement', 'show_achievement'))
     @section('main')

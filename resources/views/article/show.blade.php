@@ -21,7 +21,7 @@
     </li>
 @endsection
 
-@section('page', 'page__articles--show')
+@section('page', 'page__article--show')
 
 @section('main')
     <section class="panelV2">

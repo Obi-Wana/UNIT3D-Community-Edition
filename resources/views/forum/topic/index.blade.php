@@ -25,6 +25,8 @@
     @include('forum.partials.buttons')
 @endsection
 
+@section('page', 'page__topic--index')
+
 @section('content')
     @livewire('topic-search')
 @endsection

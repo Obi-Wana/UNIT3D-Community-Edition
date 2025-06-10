@@ -47,6 +47,6 @@ class AutoUnbookmarkCompletedTorrents extends Command
             ->whereRelation('history', 'completed_at', '>', now()->subDay())
             ->delete();
 
-        $this->comment($affected.' bookmarks unbookmarked on torrent completion in '.now()->floatDiffInSeconds($start).' seconds.');
+        $this->comment($affected.' bookmarks unbookmarked on torrent completion in '.(int) now()->diffInSeconds($start, true).' seconds.');
     }
 }

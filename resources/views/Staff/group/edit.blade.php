@@ -19,7 +19,7 @@
     </li>
 @endsection
 
-@section('page', 'page__groups--edit')
+@section('page', 'page__staff-group--edit')
 
 @section('main')
     <section class="panelV2" x-data="{ autogroup: {{ Js::from($group->autogroup) }} }">

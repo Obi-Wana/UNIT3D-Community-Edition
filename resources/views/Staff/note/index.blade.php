@@ -26,7 +26,7 @@
     </li>
 @endsection
 
-@section('page', 'page__notes-log--index')
+@section('page', 'page__staff-note--index')
 
 @section('main')
     @livewire('note-search')

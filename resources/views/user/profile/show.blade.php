@@ -23,6 +23,8 @@
     @include('user.buttons.user')
 @endsection
 
+@section('page', 'page__user-profile--show')
+
 @if (auth()->user()->isAllowed($user))
     @section('main')
         <section class="panelV2">
@@ -113,7 +115,7 @@
             </header>
             <div class="panel__body">
                 <article class="profileV2">
-                    <x-user_tag :user="$user" :anon="false" class="profile__username">
+                    <x-user-tag :user="$user" :anon="false" class="profile__username">
                         <x-slot:appendedIcons>
                             @if ($user->isOnline())
                                 <i
@@ -141,7 +143,7 @@
                                 ></i>
                             @endif
                         </x-slot>
-                    </x-user_tag>
+                    </x-user-tag>
                     <time
                         datetime="{{ $user->created_at }}"
                         title="{{ $user->created_at }}"
@@ -546,7 +548,7 @@
                             @else
                                 <tr>
                                     <td>
-                                        <x-user_tag :anon="false" :user="$watch->author" />
+                                        <x-user-tag :anon="false" :user="$watch->author" />
                                     </td>
                                     <td>{{ $watch->message }}</td>
                                     <td>
@@ -1011,7 +1013,7 @@
                         <dt>{{ __('user.invited-by') }}</dt>
                         <dd>
                             @if ($invitedBy)
-                                <x-user_tag :user="$invitedBy->sender" :anon="false" />
+                                <x-user-tag :user="$invitedBy->sender" :anon="false" />
                             @else
                                 <b>{{ __('user.open-registration') }}</b>
                             @endif

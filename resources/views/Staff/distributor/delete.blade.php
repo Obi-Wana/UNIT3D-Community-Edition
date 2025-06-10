@@ -19,7 +19,7 @@
     </li>
 @endsection
 
-@section('page', 'page__distributor--delete')
+@section('page', 'page__staff-distributor--delete')
 
 @section('main')
     <section class="panelV2">

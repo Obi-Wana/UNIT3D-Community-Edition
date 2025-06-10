@@ -11,7 +11,7 @@
     </li>
 @endsection
 
-@section('page', 'page__event--index')
+@section('page', 'page__event--show')
 
 @section('main')
     <section class="panelV2">

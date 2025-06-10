@@ -9,6 +9,8 @@
     <li class="breadcrumb--active">Client Blacklist</li>
 @endsection
 
+@section('page', 'page__staff-blacklisted-client--index')
+
 @section('main')
     <section class="panelV2">
         <header class="panel__header">

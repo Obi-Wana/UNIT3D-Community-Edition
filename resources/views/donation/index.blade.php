@@ -12,6 +12,8 @@
     <li class="breadcrumb--active">Donate</li>
 @endsection
 
+@section('page', 'page__donation--index')
+
 @section('main')
     <section x-data class="panelV2">
         <h2 class="panel__heading">Support {{ config('other.title') }}</h2>

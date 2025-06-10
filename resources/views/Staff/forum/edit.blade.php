@@ -41,7 +41,7 @@
     </li>
 @endsection
 
-@section('page', 'page__forums-admin--edit')
+@section('page', 'page__staff-forum--edit')
 
 @section('main')
     <section class="panelV2">

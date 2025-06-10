@@ -15,7 +15,7 @@
     </li>
 @endsection
 
-@section('page', 'page__poll-admin--index')
+@section('page', 'page__staff-poll--index')
 
 @section('main')
     <section class="panelV2">

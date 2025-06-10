@@ -19,7 +19,7 @@
     </li>
 @endsection
 
-@section('page', 'page__event--index')
+@section('page', 'page__staff-event--edit')
 
 @section('main')
     <section class="panelV2">

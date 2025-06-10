@@ -24,7 +24,7 @@
     </li>
 @endsection
 
-@section('page', 'page__forum-category-admin--create')
+@section('page', 'page__staff-forum-category--create')
 
 @section('main')
     <section class="panelV2">

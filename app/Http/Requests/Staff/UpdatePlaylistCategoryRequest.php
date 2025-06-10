@@ -37,6 +37,10 @@ class UpdatePlaylistCategoryRequest extends FormRequest
                 'numeric',
                 'decimal:0',
             ],
+            'description' => [
+                'required',
+                'string',
+            ],
         ];
     }
 }

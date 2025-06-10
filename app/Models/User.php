@@ -167,7 +167,7 @@ class User extends Authenticatable implements MustVerifyEmail
     /**
      * Belongs To A Internal Group.
      *
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany<Internal, $this>
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany<Internal, $this, InternalUser>
      */
     public function internals(): \Illuminate\Database\Eloquent\Relations\BelongsToMany
     {
@@ -233,7 +233,7 @@ class User extends Authenticatable implements MustVerifyEmail
     /**
      * Belongs to many followers.
      *
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany<User, $this>
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany<User, $this, \Illuminate\Database\Eloquent\Relations\Pivot, 'follow'>
      */
     public function followers(): \Illuminate\Database\Eloquent\Relations\BelongsToMany
     {
@@ -257,7 +257,7 @@ class User extends Authenticatable implements MustVerifyEmail
     /**
      * Belongs to many followees.
      *
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany<User, $this>
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany<User, $this, \Illuminate\Database\Eloquent\Relations\Pivot, 'follow'>
      */
     public function following(): \Illuminate\Database\Eloquent\Relations\BelongsToMany
     {
@@ -452,6 +452,16 @@ class User extends Authenticatable implements MustVerifyEmail
     public function playlists(): \Illuminate\Database\Eloquent\Relations\HasMany
     {
         return $this->hasMany(Playlist::class);
+    }
+
+    /**
+     * Has Many Playlist Suggestions.
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany<PlaylistSuggestion, $this>
+     */
+    public function playlistSuggestions(): \Illuminate\Database\Eloquent\Relations\HasMany
+    {
+        return $this->hasMany(PlaylistSuggestion::class);
     }
 
     /**

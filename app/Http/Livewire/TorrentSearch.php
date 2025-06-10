@@ -37,6 +37,7 @@ use Livewire\Component;
 use Livewire\WithPagination;
 use Illuminate\Pagination\LengthAwarePaginator;
 use Meilisearch\Client;
+use Illuminate\Support\Facades\DB;
 
 class TorrentSearch extends Component
 {
@@ -229,6 +230,20 @@ class TorrentSearch extends Component
 
     #[Url(except: 'list')]
     public string $view = 'list';
+
+    /**
+     * Get torrent health statistics.
+     */
+    #[Computed(seconds: 3600, cache: true)]
+    final public function torrentHealth(): object
+    {
+        return DB::table('torrents')
+            ->whereNull('deleted_at')
+            ->selectRaw('COUNT(*) AS total')
+            ->selectRaw('SUM(seeders > 0) AS alive')
+            ->selectRaw('SUM(seeders = 0) AS dead')
+            ->first();
+    }
 
     final public function mount(Request $request): void
     {
@@ -899,6 +914,7 @@ class TorrentSearch extends Component
                 'poster' => $this->groupedPosters,
                 default  => $this->torrents,
             },
+            'torrentHealth' => $this->torrentHealth,
         ]);
     }
 }

@@ -16,6 +16,8 @@
     </li>
 @endsection
 
+@section('page', 'page__person--show')
+
 @section('main')
     @livewire('tmdb-person-credit', ['person' => $person])
 @endsection

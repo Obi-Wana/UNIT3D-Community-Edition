@@ -43,6 +43,12 @@ class NotificationSearch extends Component
     public bool $followers = false;
 
     #[Url(history: true)]
+    public bool $playlist_suggestions = false;
+
+    #[Url(history: true)]
+    public bool $playlist_suggestion_rejections = false;
+
+    #[Url(history: true)]
     public bool $posts = false;
 
     #[Url(history: true)]
@@ -117,6 +123,12 @@ class NotificationSearch extends Component
                     })
                     ->when($this->followers, function ($query): void {
                         $query->orWhere('type', '=', \App\Notifications\NewFollow::class);
+                    })
+                    ->when($this->playlist_suggestions, function ($query): void {
+                        $query->orWhere('type', '=', \App\Notifications\PlaylistSuggestionCreated::class);
+                    })
+                    ->when($this->playlist_suggestion_rejections, function ($query): void {
+                        $query->orWhere('type', '=', \App\Notifications\PlaylistSuggestionRejected::class);
                     })
                     ->when($this->posts, function ($query): void {
                         $query->orWhere('type', '=', \App\Notifications\NewPost::class);

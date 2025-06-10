@@ -14,7 +14,7 @@
     </li>
 @endsection
 
-@section('page', 'page__conversations--index')
+@section('page', 'page__user-conversation--index')
 
 @section('main')
     @livewire('conversation-search')

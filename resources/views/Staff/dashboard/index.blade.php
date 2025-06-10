@@ -14,7 +14,7 @@
     </li>
 @endsection
 
-@section('page', 'page__dashboard')
+@section('page', 'page__staff-dashboard--index')
 
 @section('main')
     <div class="dashboard__menus">
@@ -521,7 +521,7 @@
                 <p class="form__group form__group--horizontal">
                     <a
                         class="form__button form__button--text"
-                        href="{{ route('staff.mass-pm.create') }}"
+                        href="{{ route('staff.mass_private_message.create') }}"
                     >
                         <i class="{{ config('other.font-awesome') }} fa-envelope-square"></i>
                         {{ __('staff.mass-pm') }}

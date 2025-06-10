@@ -25,7 +25,7 @@
     </li>
 @endsection
 
-@section('page', 'page__rsskey-log--index')
+@section('page', 'page__staff-rsskey--index')
 
 @section('main')
     @livewire('rsskey-search')

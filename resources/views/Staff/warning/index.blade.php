@@ -19,7 +19,7 @@
     </li>
 @endsection
 
-@section('page', 'page__warning-log--index')
+@section('page', 'page__staff-warning--index')
 
 @section('main')
     @livewire('warning-log-search')

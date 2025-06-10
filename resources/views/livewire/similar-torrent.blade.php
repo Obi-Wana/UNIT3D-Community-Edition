@@ -918,7 +918,6 @@
                 @endif
             </div>
         </section>
-
         <section class="panelV2">
             <header style="cursor: pointer" class="panel__header">
                 <h2 class="panel__heading">
@@ -974,7 +973,7 @@
                                 <td>{{ $torrentRequest->type->name }}</td>
                                 <td>{{ $torrentRequest->resolution->name ?? 'Unknown' }}</td>
                                 <td>
-                                    <x-user_tag
+                                    <x-user-tag
                                         :user="$torrentRequest->user"
                                         :anon="$torrentRequest->anon"
                                     />
@@ -997,7 +996,7 @@
                                             {{ __('request.claimed') }}
 
                                             @break
-                                        @case($torrentRequest->torrent_id !== null && $torrentRequest->approved_by === null)
+                                        @case($torrentRequest->torrent_id !== null && $torrentRequest->approved_when === null)
                                             <i class="fas fa-circle text-purple"></i>
                                             {{ __('request.pending') }}
 
@@ -1024,6 +1023,69 @@
                 </table>
             </div>
         </section>
+        @if ($collectionMovies?->isNotEmpty())
+            <section class="panelV2">
+                <header class="panel__header">
+                    <h2 class="panel__heading">{{ __('mediahub.collection') }}</h2>
+                    <div class="panel__actions" x-data="posterRow">
+                        <div class="panel__action">
+                            <button class="form__standard-icon-button" x-bind="scrollLeft">
+                                <i class="{{ \config('other.font-awesome') }} fa-angle-left"></i>
+                            </button>
+                        </div>
+                        <div class="panel__action">
+                            <button class="form__standard-icon-button" x-bind="scrollRight">
+                                <i class="{{ \config('other.font-awesome') }} fa-angle-right"></i>
+                            </button>
+                        </div>
+                    </div>
+                </header>
+                <div
+                    class="panel__body collection-posters"
+                    x-ref="posters"
+                    style="max-height: 330px !important"
+                >
+                    @foreach ($collectionMovies as $collectionMovie)
+                        <x-movie.poster :movie="$collectionMovie" :categoryId="$category->id" />
+                    @endforeach
+                </div>
+            </section>
+        @endif
+
+        @if ($playlistCategories->isNotEmpty())
+            <section class="panelV2">
+                <h2 class="panel__heading">{{ __('playlist.playlists') }}</h2>
+                <div class="data-table-wrapper">
+                    <table class="data-table">
+                        <thead>
+                            <th>{{ __('common.category') }}</th>
+                            <th>{{ __('common.name') }}</th>
+                            <th>{{ __('playlist.titles') }}</th>
+                            <th>{{ __('common.author') }}</th>
+                        </thead>
+                        <tbody>
+                            @foreach ($playlistCategories as $playlistCategory)
+                                @foreach ($playlistCategory->playlists as $playlist)
+                                    <tr>
+                                        @if ($loop->first)
+                                            <td rowspan="{{ $loop->count }}">
+                                                {{ $playlist->playlistCategory->name }}
+                                            </td>
+                                        @endif
+
+                                        <td>{{ $playlist->name }}</td>
+                                        <td>{{ $playlist->torrents_count }}</td>
+                                        <td>
+                                            <x-user-tag :user="$playlist->user" :anon="false" />
+                                        </td>
+                                    </tr>
+                                @endforeach
+                            @endforeach
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+        @endif
     </div>
 </div>
 

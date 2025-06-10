@@ -38,6 +38,8 @@
     </li>
 @endsection
 
+@section('page', 'page__torrent--create')
+
 @section('main')
     <section
         class="upload panelV2"

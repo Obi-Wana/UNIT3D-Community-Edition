@@ -21,7 +21,7 @@
     @include('user.buttons.user')
 @endsection
 
-@section('page', 'page__user-resurrections--index')
+@section('page', 'page__user-resurrection--index')
 
 @section('main')
     @livewire('user-resurrections', ['userId' => $user->id])

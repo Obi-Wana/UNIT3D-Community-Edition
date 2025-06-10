@@ -124,6 +124,6 @@ class AutoBonAllocation extends Command
             });
         }, 25);
 
-        $this->comment('Automated BON Allocation Command Complete in '.now()->diffInMilliseconds($now).' ms');
+        $this->comment('Automated BON Allocation Command Complete in '.(int) now()->diffInMilliseconds($now, true).' ms');
     }
 }

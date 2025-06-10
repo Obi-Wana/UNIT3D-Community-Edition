@@ -17,6 +17,8 @@
     <li class="breadcrumb--active">Laravel Log Viewer</li>
 @endsection
 
+@section('page', 'page__staff-laravel-log--index')
+
 <div
     style="
         display: grid;

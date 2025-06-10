@@ -99,7 +99,7 @@ class AutoGroup extends Command
                 }
             });
 
-        $elapsed = $now->diffInSeconds(now());
+        $elapsed = (int) $now->diffInSeconds(now(), true);
         $this->comment('Automated User Group Command Complete ('.$elapsed.' s)');
     }
 }

@@ -19,7 +19,7 @@
     </li>
 @endsection
 
-@section('page', 'page__chat-room--edit')
+@section('page', 'page__staff-chat-room--edit')
 
 @section('main')
     <section class="panelV2">

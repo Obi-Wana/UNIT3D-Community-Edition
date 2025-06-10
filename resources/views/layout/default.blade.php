@@ -9,7 +9,7 @@
             @include('partials.alerts')
         </div>
         <header>
-            @include('partials.top_nav')
+            @include('partials.top-nav')
             <nav class="secondary-nav">
                 <ol class="breadcrumbsV2">
                     @if (! Route::is('home.index'))
@@ -27,7 +27,7 @@
                 </ul>
             </nav>
             @if (Session::has('achievement'))
-                @include('partials.achievement_modal')
+                @include('partials.achievement-modal')
             @endif
 
             @if (Session::has('errors'))

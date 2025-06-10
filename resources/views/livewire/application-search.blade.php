@@ -66,7 +66,7 @@
                             @if ($application->user === null)
                                 N/A
                             @else
-                                <x-user_tag :anon="false" :user="$application->user" />
+                                <x-user-tag :anon="false" :user="$application->user" />
                             @endif
                         </td>
                         <td>{{ $application->email }}</td>
@@ -103,7 +103,7 @@
                             @if ($application->moderated === null)
                                 N/A
                             @else
-                                <x-user_tag :anon="false" :user="$application->moderated" />
+                                <x-user-tag :anon="false" :user="$application->moderated" />
                             @endif
                         </td>
                         <td>

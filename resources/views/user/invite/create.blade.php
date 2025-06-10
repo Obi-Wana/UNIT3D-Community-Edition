@@ -21,6 +21,8 @@
     @include('user.buttons.user')
 @endsection
 
+@section('page', 'page__user-invite--create')
+
 @if (config('other.invite-only') === false)
     @section('main')
         <section class="panelV2">

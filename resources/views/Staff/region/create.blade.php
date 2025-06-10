@@ -14,7 +14,7 @@
     </li>
 @endsection
 
-@section('page', 'page__region--create')
+@section('page', 'page__staff-region--create')
 
 @section('main')
     <section class="panelV2">

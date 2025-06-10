@@ -17,7 +17,7 @@
     @include('Staff.partials.user-info-search')
 @endsection
 
-@section('page', 'page__peers--index')
+@section('page', 'page__staff-peer--index')
 
 @section('main')
     @livewire('peer-search')

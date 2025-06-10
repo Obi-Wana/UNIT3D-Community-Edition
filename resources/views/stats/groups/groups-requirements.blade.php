@@ -22,7 +22,7 @@
     @include('partials.statsgroupmenu')
 @endsection
 
-@section('page', 'page__stats--groups')
+@section('page', 'page__stats--group-requirements')
 
 @section('main')
     <section class="panelV2">

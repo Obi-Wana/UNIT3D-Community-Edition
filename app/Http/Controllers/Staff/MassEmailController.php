@@ -26,7 +26,7 @@ class MassEmailController extends Controller
 {
     public function create(): \Illuminate\Contracts\View\View|\Illuminate\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\Foundation\Application
     {
-        return view('Staff.mass_email.create', ['groups' => Group::orderBy('position')->get()]);
+        return view('Staff.mass-email.create', ['groups' => Group::orderBy('position')->get()]);
     }
 
     public function store(MassEmailRequest $request): \Illuminate\Http\RedirectResponse

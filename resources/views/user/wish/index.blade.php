@@ -19,6 +19,8 @@
     @include('user.buttons.user')
 @endsection
 
+@section('page', 'page__user-wish--index')
+
 @section('main')
     <section class="panelV2">
         <header class="panel__header">

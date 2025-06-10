@@ -190,7 +190,7 @@ class SubtitleController extends Controller
         }
 
         // Define the filename for the download
-        $tempFilename = '['.$subtitle->language->name.' Subtitle]'.$subtitle->torrent->name.$subtitle->extension;
+        $tempFilename = sanitize_filename('['.$subtitle->language->name.' Subtitle]'.$subtitle->torrent->name.$subtitle->extension);
 
         // Increment downloads count
         $subtitle->increment('downloads');

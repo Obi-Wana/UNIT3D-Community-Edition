@@ -16,6 +16,8 @@
     </li>
 @endsection
 
+@section('page', 'page__torrent--edit')
+
 @section('main')
     <section
         class="panelV2"

@@ -19,6 +19,8 @@
     </li>
 @endsection
 
+@section('page', 'page__company--index')
+
 @section('main')
     @livewire('tmdb-company-search')
 @endsection

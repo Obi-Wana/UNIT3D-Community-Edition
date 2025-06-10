@@ -129,7 +129,7 @@
             >
                 {{ $torrent->name }}
             </a>
-            <x-user_tag
+            <x-user-tag
                 class="torrent-search--list__uploader"
                 :user="$torrent->user"
                 :anon="$torrent->anon"

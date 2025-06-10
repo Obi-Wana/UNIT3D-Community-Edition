@@ -32,7 +32,7 @@ class TorrentDownloadController extends Controller
      */
     public function show(Request $request, int $id): \Illuminate\Contracts\View\Factory|\Illuminate\View\View
     {
-        return view('torrent.download_check', [
+        return view('torrent.download-check', [
             'torrent' => Torrent::withoutGlobalScope(ApprovedScope::class)->findOrFail($id),
             'user'    => $request->user(),
         ]);
@@ -101,7 +101,7 @@ class TorrentDownloadController extends Controller
 
                 echo Bencode::bencode($dict);
             },
-            str_replace([' ', '/', '\\'], ['.', '-', '-'], '['.config('torrent.source').']'.$torrent->name.'.torrent'),
+            sanitize_filename('['.config('torrent.source').']'.$torrent->name.'.torrent'),
             ['Content-Type' => 'application/x-bittorrent']
         );
     }

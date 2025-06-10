@@ -1,8 +1,8 @@
-# Meilisearch Setup for UNIT3D
+# Meilisearch setup for UNIT3D
 
 **Note:** This guide assumes you are using a `sudo` user named `ubuntu`.
 
-## 1. Install and Configure Meilisearch
+## 1. Install and configure Meilisearch
 
 1. **Install Meilisearch:**
 
@@ -12,7 +12,7 @@
     sudo chmod +x /usr/local/bin/meilisearch
     ```
 
-2. **Set Up Directories:**
+2. **Set up directories:**
 
     ```sh
     sudo mkdir -p /var/lib/meilisearch/data /var/lib/meilisearch/dumps /var/lib/meilisearch/snapshots
@@ -20,7 +20,7 @@
     sudo chmod -R 750 /var/lib/meilisearch
     ```
 
-3. **Generate and Record a Master Key:**
+3. **Generate and record a master key:**
 
     Generate a 16-byte master key:
 
@@ -47,7 +47,7 @@
     snapshot_dir = "/var/lib/meilisearch/snapshots"
     ```
 
-5. **Create and Enable Service:**
+5. **Create and enable service:**
 
     ```sh
     sudo nano /etc/systemd/system/meilisearch.service
@@ -96,7 +96,7 @@
     MEILISEARCH_KEY=your_16_byte_master_key
     ```
 
-2. **Clear Configuration and Restart Services:**
+2. **Clear configuration and restart services:**
 
     ```sh
     sudo php artisan set:all_cache
@@ -106,20 +106,24 @@
 
 ## 3. Maintenance
 
-1. **Reload Data and Sync Indexes:**
+1. **Reload data and sync indexes:**
 
-    - **Sync Index Settings:** After UNIT3D updates, sync the index settings to ensure they are up to date:
+    - **Sync index settings:**
+
+        After UNIT3D updates, sync the index settings to ensure they are up to date:
 
         ```sh
         sudo php artisan scout:sync-index-settings
         ```
 
-    - **Reload Data:** Whenever Meilisearch is upgraded or during the initial setup, the database must be reloaded:
+    - **Reload data:**
+
+        Whenever Meilisearch is upgraded or during the initial setup, the database must be reloaded:
 
         ```sh
         sudo php artisan auto:sync_torrents_to_meilisearch --wipe && sudo php artisan auto:sync_people_to_meilisearch
         ```
 
-## See Also
+## See also
 
 For further details, refer to the [official Meilisearch documentation](https://www.meilisearch.com/docs/guides/deployment/running_production).

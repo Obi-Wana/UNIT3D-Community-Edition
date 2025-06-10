@@ -17,7 +17,7 @@
     <li class="breadcrumb--active">Commands</li>
 @endsection
 
-@section('page', 'page__commands--index')
+@section('page', 'page__staff-command--index')
 
 @section('main')
     <div

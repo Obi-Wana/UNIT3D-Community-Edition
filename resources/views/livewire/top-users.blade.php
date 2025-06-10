@@ -98,7 +98,7 @@
                     @foreach ($this->uploaders as $uploader)
                         <article class="user-stat-card">
                             <h3 class="user-stat-card__username">
-                                <x-user_tag
+                                <x-user-tag
                                     :user="$uploader->user"
                                     :anon="$uploader->user->privacy?->private_profile"
                                 />
@@ -129,7 +129,7 @@
                     @foreach ($this->downloaders as $downloader)
                         <article class="user-stat-card">
                             <h3 class="user-stat-card__username">
-                                <x-user_tag
+                                <x-user-tag
                                     :user="$downloader->user"
                                     :anon="$downloader->user->privacy?->private_profile"
                                 />
@@ -162,7 +162,7 @@
                     @foreach ($this->uploaded as $upload)
                         <article class="user-stat-card">
                             <h3 class="user-stat-card__username">
-                                <x-user_tag
+                                <x-user-tag
                                     :user="$upload"
                                     :anon="$upload->privacy?->private_profile"
                                 />
@@ -196,7 +196,7 @@
                     @foreach ($this->downloaded as $download)
                         <article class="user-stat-card">
                             <h3 class="user-stat-card__username">
-                                <x-user_tag
+                                <x-user-tag
                                     :user="$download"
                                     :anon="$download->privacy?->private_profile"
                                 />
@@ -230,7 +230,7 @@
                     @foreach ($this->seeders as $seeder)
                         <article class="user-stat-card">
                             <h3 class="user-stat-card__username">
-                                <x-user_tag
+                                <x-user-tag
                                     :user="$seeder->user"
                                     :anon="$seeder->user->privacy?->private_profile"
                                 />
@@ -261,7 +261,7 @@
                     @foreach ($this->seedtimes as $seedtime)
                         <article class="user-stat-card">
                             <h3 class="user-stat-card__username">
-                                <x-user_tag
+                                <x-user-tag
                                     :user="$seedtime"
                                     :anon="$seedtime->privacy?->private_profile"
                                 />
@@ -295,7 +295,7 @@
                     @foreach ($this->served as $serve)
                         <article class="user-stat-card">
                             <h3 class="user-stat-card__username">
-                                <x-user_tag
+                                <x-user-tag
                                     :user="$serve"
                                     :anon="$serve->privacy?->private_profile"
                                 />
@@ -328,7 +328,7 @@
                     @foreach ($this->commenters as $commenter)
                         <article class="user-stat-card">
                             <h3 class="user-stat-card__username">
-                                <x-user_tag
+                                <x-user-tag
                                     :user="$commenter->user"
                                     :anon="$commenter->user->privacy?->private_profile"
                                 />
@@ -361,7 +361,7 @@
                     @foreach ($this->posters as $poster)
                         <article class="user-stat-card">
                             <h3 class="user-stat-card__username">
-                                <x-user_tag
+                                <x-user-tag
                                     :user="$poster->user"
                                     :anon="$poster->user->privacy?->private_profile"
                                 />
@@ -392,7 +392,7 @@
                     @foreach ($this->thankers as $thanker)
                         <article class="user-stat-card">
                             <h3 class="user-stat-card__username">
-                                <x-user_tag
+                                <x-user-tag
                                     :user="$thanker->user"
                                     :anon="$thanker->user->privacy?->private_profile"
                                 />
@@ -425,7 +425,7 @@
                     @foreach ($this->personals as $personal)
                         <article class="user-stat-card">
                             <h3 class="user-stat-card__username">
-                                <x-user_tag
+                                <x-user-tag
                                     :user="$personal->user"
                                     :anon="$personal->user->privacy?->private_profile"
                                 />

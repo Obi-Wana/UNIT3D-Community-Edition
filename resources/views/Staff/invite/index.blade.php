@@ -23,7 +23,7 @@
     @include('Staff.partials.user-info-search')
 @endsection
 
-@section('page', 'page__invite-log--index')
+@section('page', 'page__staff-invite--index')
 
 @section('main')
     @livewire('invite-log-search')

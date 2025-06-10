@@ -540,17 +540,17 @@
                         @switch($torrent->status)
                             @case(\App\Enums\ModerationStatus::APPROVED)
                                 Approved By:
-                                <x-user_tag :user="$torrent->moderated" :anon="false" />
+                                <x-user-tag :user="$torrent->moderated" :anon="false" />
 
                                 @break
                             @case(\App\Enums\ModerationStatus::POSTPONED)
                                 Postponed By:
-                                <x-user_tag :user="$torrent->moderated" :anon="false" />
+                                <x-user-tag :user="$torrent->moderated" :anon="false" />
 
                                 @break
                             @case(\App\Enums\ModerationStatus::REJECTED)
                                 Rejected By:
-                                <x-user_tag :user="$torrent->moderated" :anon="false" />
+                                <x-user-tag :user="$torrent->moderated" :anon="false" />
 
                                 @break
                             @default

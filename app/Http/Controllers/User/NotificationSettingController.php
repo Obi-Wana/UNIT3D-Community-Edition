@@ -50,7 +50,7 @@ class NotificationSettingController extends Controller
     {
         abort_unless($request->user()->is($user), 403);
 
-        return view('user.notification_setting.edit', [
+        return view('user.notification-setting.edit', [
             'user'   => $user,
             'groups' => Group::query()
                 ->where('is_modo', '=', false)

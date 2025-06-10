@@ -13,7 +13,7 @@
     <li class="breadcrumb--active">Announces</li>
 @endsection
 
-@section('page', 'page__history--index')
+@section('page', 'page__staff-announce--index')
 
 @section('main')
     @livewire('announce-search')

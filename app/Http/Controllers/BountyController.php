@@ -40,7 +40,7 @@ class BountyController extends Controller
      */
     public function store(StoreTorrentRequestBountyRequest $request, TorrentRequest $torrentRequest): \Illuminate\Http\RedirectResponse
     {
-        abort_unless($torrentRequest->approved_by === null, 403);
+        abort_unless($torrentRequest->approved_when === null, 403);
 
         $user = $request->user();
 

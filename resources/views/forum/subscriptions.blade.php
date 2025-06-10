@@ -25,6 +25,8 @@
     @include('forum.partials.buttons')
 @endsection
 
+@section('page', 'page__subscription--index')
+
 @section('main')
     @livewire('subscribed-forum', [], key('forums'))
     @livewire('subscribed-topic', [], key('topics'))

@@ -14,14 +14,14 @@
     </li>
 @endsection
 
-@section('page', 'page__conversation--show')
+@section('page', 'page__user-conversation--show')
 
 @section('main')
     @foreach ($conversation->messages as $message)
         <section class="panelV2">
             <header class="panel__header">
                 <h2 class="panel__heading">
-                    <x-user_tag :user="$message->sender" :anon="false" />
+                    <x-user-tag :user="$message->sender" :anon="false" />
                 </h2>
                 <div class="panel__actions">
                     <div class="panel__action">
@@ -72,7 +72,7 @@
             <ul>
                 @foreach ($conversation->users as $conversationUser)
                     <li>
-                        <x-user_tag :user="$conversationUser" :anon="false" />
+                        <x-user-tag :user="$conversationUser" :anon="false" />
                     </li>
                 @endforeach
             </ul>

@@ -1,4 +1,4 @@
-# Upgrading PHP Version
+# Upgrading PHP version
 
 <!-- cspell:ignore ondrej,autoremove,debconf-utils,dpkg -->
 

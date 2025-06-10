@@ -37,6 +37,10 @@ class StorePlaylistCategoryRequest extends FormRequest
                 'numeric',
                 'decimal:0',
             ],
+            'description' => [
+                'required',
+                'string',
+            ],
         ];
     }
 }

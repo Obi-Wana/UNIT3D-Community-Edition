@@ -57,7 +57,7 @@ class TmdbPerson extends Model
     }
 
     /**
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany<TmdbTv, $this>
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany<TmdbTv, $this, \Illuminate\Database\Eloquent\Relations\Pivot, 'credit'>
      */
     public function tv(): \Illuminate\Database\Eloquent\Relations\BelongsToMany
     {
@@ -67,7 +67,7 @@ class TmdbPerson extends Model
     }
 
     /**
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany<TmdbTv, $this>
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany<TmdbTv, $this, \Illuminate\Database\Eloquent\Relations\Pivot, 'credit'>
      */
     public function createdTv(): \Illuminate\Database\Eloquent\Relations\BelongsToMany
     {
@@ -78,7 +78,7 @@ class TmdbPerson extends Model
     }
 
     /**
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany<TmdbTv, $this>
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany<TmdbTv, $this, \Illuminate\Database\Eloquent\Relations\Pivot, 'credit'>
      */
     public function directedTv(): \Illuminate\Database\Eloquent\Relations\BelongsToMany
     {
@@ -89,7 +89,7 @@ class TmdbPerson extends Model
     }
 
     /**
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany<TmdbTv, $this>
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany<TmdbTv, $this, \Illuminate\Database\Eloquent\Relations\Pivot, 'credit'>
      */
     public function writtenTv(): \Illuminate\Database\Eloquent\Relations\BelongsToMany
     {
@@ -100,7 +100,7 @@ class TmdbPerson extends Model
     }
 
     /**
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany<TmdbTv, $this>
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany<TmdbTv, $this, \Illuminate\Database\Eloquent\Relations\Pivot, 'credit'>
      */
     public function producedTv(): \Illuminate\Database\Eloquent\Relations\BelongsToMany
     {
@@ -111,7 +111,7 @@ class TmdbPerson extends Model
     }
 
     /**
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany<TmdbTv, $this>
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany<TmdbTv, $this, \Illuminate\Database\Eloquent\Relations\Pivot, 'credit'>
      */
     public function composedTv(): \Illuminate\Database\Eloquent\Relations\BelongsToMany
     {
@@ -122,7 +122,7 @@ class TmdbPerson extends Model
     }
 
     /**
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany<TmdbTv, $this>
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany<TmdbTv, $this, \Illuminate\Database\Eloquent\Relations\Pivot, 'credit'>
      */
     public function cinematographedTv(): \Illuminate\Database\Eloquent\Relations\BelongsToMany
     {
@@ -133,7 +133,7 @@ class TmdbPerson extends Model
     }
 
     /**
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany<TmdbTv, $this>
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany<TmdbTv, $this, \Illuminate\Database\Eloquent\Relations\Pivot, 'credit'>
      */
     public function editedTv(): \Illuminate\Database\Eloquent\Relations\BelongsToMany
     {
@@ -144,7 +144,7 @@ class TmdbPerson extends Model
     }
 
     /**
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany<TmdbTv, $this>
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany<TmdbTv, $this, \Illuminate\Database\Eloquent\Relations\Pivot, 'credit'>
      */
     public function productionDesignedTv(): \Illuminate\Database\Eloquent\Relations\BelongsToMany
     {
@@ -155,7 +155,7 @@ class TmdbPerson extends Model
     }
 
     /**
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany<TmdbTv, $this>
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany<TmdbTv, $this, \Illuminate\Database\Eloquent\Relations\Pivot, 'credit'>
      */
     public function artDirectedTv(): \Illuminate\Database\Eloquent\Relations\BelongsToMany
     {
@@ -166,7 +166,7 @@ class TmdbPerson extends Model
     }
 
     /**
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany<TmdbTv, $this>
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany<TmdbTv, $this, \Illuminate\Database\Eloquent\Relations\Pivot, 'credit'>
      */
     public function actedTv(): \Illuminate\Database\Eloquent\Relations\BelongsToMany
     {
@@ -177,7 +177,7 @@ class TmdbPerson extends Model
     }
 
     /**
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany<TmdbMovie, $this>
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany<TmdbMovie, $this, \Illuminate\Database\Eloquent\Relations\Pivot, 'credit'>
      */
     public function movie(): \Illuminate\Database\Eloquent\Relations\BelongsToMany
     {
@@ -187,7 +187,7 @@ class TmdbPerson extends Model
     }
 
     /**
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany<TmdbMovie, $this>
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany<TmdbMovie, $this, \Illuminate\Database\Eloquent\Relations\Pivot, 'credit'>
      */
     public function directedMovies(): \Illuminate\Database\Eloquent\Relations\BelongsToMany
     {
@@ -198,7 +198,7 @@ class TmdbPerson extends Model
     }
 
     /**
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany<TmdbMovie, $this>
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany<TmdbMovie, $this, \Illuminate\Database\Eloquent\Relations\Pivot, 'credit'>
      */
     public function writtenMovies(): \Illuminate\Database\Eloquent\Relations\BelongsToMany
     {
@@ -209,7 +209,7 @@ class TmdbPerson extends Model
     }
 
     /**
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany<TmdbMovie, $this>
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany<TmdbMovie, $this, \Illuminate\Database\Eloquent\Relations\Pivot, 'credit'>
      */
     public function producedMovies(): \Illuminate\Database\Eloquent\Relations\BelongsToMany
     {
@@ -220,7 +220,7 @@ class TmdbPerson extends Model
     }
 
     /**
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany<TmdbMovie, $this>
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany<TmdbMovie, $this, \Illuminate\Database\Eloquent\Relations\Pivot, 'credit'>
      */
     public function composedMovies(): \Illuminate\Database\Eloquent\Relations\BelongsToMany
     {
@@ -231,7 +231,7 @@ class TmdbPerson extends Model
     }
 
     /**
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany<TmdbMovie, $this>
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany<TmdbMovie, $this, \Illuminate\Database\Eloquent\Relations\Pivot, 'credit'>
      */
     public function cinematographedMovies(): \Illuminate\Database\Eloquent\Relations\BelongsToMany
     {
@@ -242,7 +242,7 @@ class TmdbPerson extends Model
     }
 
     /**
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany<TmdbMovie, $this>
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany<TmdbMovie, $this, \Illuminate\Database\Eloquent\Relations\Pivot, 'credit'>
      */
     public function editedMovies(): \Illuminate\Database\Eloquent\Relations\BelongsToMany
     {
@@ -253,7 +253,7 @@ class TmdbPerson extends Model
     }
 
     /**
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany<TmdbMovie, $this>
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany<TmdbMovie, $this, \Illuminate\Database\Eloquent\Relations\Pivot, 'credit'>
      */
     public function productionDesignedMovies(): \Illuminate\Database\Eloquent\Relations\BelongsToMany
     {
@@ -264,7 +264,7 @@ class TmdbPerson extends Model
     }
 
     /**
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany<TmdbMovie, $this>
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany<TmdbMovie, $this, \Illuminate\Database\Eloquent\Relations\Pivot, 'credit'>
      */
     public function artDirectedMovies(): \Illuminate\Database\Eloquent\Relations\BelongsToMany
     {
@@ -275,7 +275,7 @@ class TmdbPerson extends Model
     }
 
     /**
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany<TmdbMovie, $this>
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany<TmdbMovie, $this, \Illuminate\Database\Eloquent\Relations\Pivot, 'credit'>
      */
     public function actedMovies(): \Illuminate\Database\Eloquent\Relations\BelongsToMany
     {

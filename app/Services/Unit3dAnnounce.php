@@ -426,7 +426,7 @@ class Unit3dAnnounce
                     'data'   => $data,
                 ]);
 
-                Session::flash('errors', (new ViewErrorBag())->put('test', (new MessageBag(['External tracker returned error']))));
+                Session::flash('errors', (new ViewErrorBag())->put('test', new MessageBag(['error' => 'External tracker returned error'])));
             }
 
             return $isSuccess;
@@ -472,7 +472,7 @@ class Unit3dAnnounce
                     'data'   => $data,
                 ]);
 
-                Session::flash('errors', (new ViewErrorBag())->put('test', (new MessageBag(['External tracker returned error']))));
+                Session::flash('errors', (new ViewErrorBag())->put('test', new MessageBag(['error' => 'External tracker returned error'])));
             }
 
             return $isSuccess;

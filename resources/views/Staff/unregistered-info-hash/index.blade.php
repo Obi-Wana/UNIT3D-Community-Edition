@@ -23,7 +23,7 @@
     <li class="breadcrumb--active">Unregistered Info Hashes</li>
 @endsection
 
-@section('page', 'page__unregistered-info-hash--index')
+@section('page', 'page__staff-unregistered-info-hash--index')
 
 @section('main')
     @livewire('unregistered-info-hash-search')

@@ -43,7 +43,7 @@ class ApprovedRequestFillController extends Controller
      */
     public function store(Request $request, TorrentRequest $torrentRequest): \Illuminate\Http\RedirectResponse
     {
-        abort_unless(($request->user()->id === $torrentRequest->user_id || $request->user()->group->is_modo) && $torrentRequest->approved_by === null, 403);
+        abort_unless(($request->user()->id === $torrentRequest->user_id || $request->user()->group->is_modo) && $torrentRequest->approved_when === null, 403);
 
         $approver = $request->user();
         $filler = $torrentRequest->filler()->sole();

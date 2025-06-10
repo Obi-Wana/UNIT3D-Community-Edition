@@ -6,16 +6,16 @@ UNIT3D is offering a new `{JSON:API}`. If you haven't already head over to your 
 
 ## Ecosystem
 
-### Torrent Auto Uploaders
+### Torrent auto uploaders
 
 - [L4G's Upload Assistant](https://github.com/Audionut/Upload-Assistant) — a simple tool to take the work out of uploading
 - [GG Bot Upload Assistant](https://gitlab.com/NoobMaster669/gg-bot-upload-assistant) — a torrent auto uploader to take the manual work out of uploading
 
-## API Authentication
+## API authentication
 
 There are several ways of passing the API token to UNIT3D. We'll discuss each of these approaches while using the Guzzle HTTP library to demonstrate their usage. You may choose any of these approaches based on your needs to communicate with our API.
 
--   **Query String**
+-   **Query string**
 
     UNIT3D's API consumers may specify their token as an `api_token` query string value:
 
@@ -23,7 +23,7 @@ There are several ways of passing the API token to UNIT3D. We'll discuss each of
     $response = $client->request('GET', '/api/torrents?api_token=YOUR_TOKEN_HERE);
     ```
 
--   **Request Payload**
+-   **Request payload**
 
     UNIT3D's API consumers may include their API token in the request's form parameters as an `api_token`:
 
@@ -38,7 +38,7 @@ There are several ways of passing the API token to UNIT3D. We'll discuss each of
     ]);
     ```
 
--   **Bearer Token**
+-   **Bearer token**
 
     UNIT3D's API consumers may provide their API token as a `Bearer` token in the `Authorization` header of the request:
 
@@ -51,9 +51,9 @@ There are several ways of passing the API token to UNIT3D. We'll discuss each of
     ]);
     ```
 
-## API Endpoints
+## API endpoints
 
-### Upload a Torrent
+### Upload a torrent
 
 Endpoint: POST `/api/torrents/upload`
 
@@ -89,10 +89,11 @@ Parameters:
 | `doubleup`*        | bool   | Should the torrent offer double upload?
 | `du_until`*        | int    | Number of days the torrent should offer double upload
 | `sticky`*          | bool   | Should the torrent be stickied on the torrent index?
+| `mod_queue_opt_in`*| bool   | Should the torrent be sent to moderation queue?
 
 *Only available to staff and internal users.
 
-### Fetch a Torrent
+### Fetch a torrent
 
 Endpoint: GET `/api/torrents/:id`
 
@@ -102,7 +103,7 @@ Example:
 https://unit3d.site/api/torrents/39765?api_token=YOURTOKENHERE
 ```
 
-### Fetch Torrents Index (Latest 25 Torrents)
+### Fetch torrents index (latest 25 torrents)
 
 Endpoint: GET `/api/torrents`
 
@@ -112,7 +113,7 @@ Example:
 https://unit3d.site/api/torrents?api_token=YOURTOKENHERE
 ```
 
-### Filter Torrents
+### Filter torrents
 
 Endpoint: GET `/api/torrents/filter`
 
@@ -161,7 +162,7 @@ Example:
 https://unit3d.site/api/torrents/filter?tmdbId=475557&categories[]=1&api_token=YOURTOKENHERE
 ```
 
-### Personal Account Info
+### Personal account info
 
 Endpoint: GET `/api/user`
 

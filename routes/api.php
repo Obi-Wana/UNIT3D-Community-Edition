@@ -34,16 +34,18 @@ if (config('unit3d.proxy_scheme')) {
 if (config('unit3d.root_url_override')) {
     URL::forceRootUrl(config('unit3d.root_url_override'));
 }
-// Torrents System
-Route::middleware(['auth:api', 'banned'])->prefix('torrents')->group(function (): void {
-    Route::get('/', [App\Http\Controllers\API\TorrentController::class, 'index'])->name('api.torrents.index');
-    Route::get('/filter', [App\Http\Controllers\API\TorrentController::class, 'filter']);
-    Route::get('/{id}', [App\Http\Controllers\API\TorrentController::class, 'show'])->where('id', '[0-9]+');
-    Route::post('/upload', [App\Http\Controllers\API\TorrentController::class, 'store']);
-});
+Route::middleware(['auth:api', 'banned'])->group(function (): void {
+    // Torrents System
+    Route::prefix('torrents')->group(function (): void {
+        Route::get('/', [App\Http\Controllers\API\TorrentController::class, 'index'])->name('api.torrents.index');
+        Route::get('/filter', [App\Http\Controllers\API\TorrentController::class, 'filter']);
+        Route::get('/{id}', [App\Http\Controllers\API\TorrentController::class, 'show'])->where('id', '[0-9]+');
+        Route::post('/upload', [App\Http\Controllers\API\TorrentController::class, 'store']);
+    });
 
-// User
-Route::middleware(['auth:api', 'banned'])->get('/user', [App\Http\Controllers\API\UserController::class, 'show']);
+    // User
+    Route::get('/user', [App\Http\Controllers\API\UserController::class, 'show']);
+});
 
 // Internal front-end web API routes
 Route::middleware(['web', 'auth', 'banned', 'verified'])->group(function (): void {
@@ -57,5 +59,5 @@ Route::middleware(['web', 'auth', 'banned', 'verified'])->group(function (): voi
         Route::post('/{postId}/dislike', [App\Http\Controllers\API\DislikeController::class, 'store'])->name('api.posts.dislike.store');
     });
 
-    Route::get('/quicksearch', [App\Http\Controllers\API\QuickSearchController::class, 'index'])->name('api.quicksearch');
+    Route::get('/quicksearch', [App\Http\Controllers\API\QuickSearchController::class, 'index'])->name('api.quicksearch')->middleware('throttle:search')->withoutMiddleware('throttle:web');
 });

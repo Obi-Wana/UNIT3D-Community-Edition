@@ -30,7 +30,7 @@ class BonEarningController extends Controller
      */
     public function index(): \Illuminate\Contracts\View\Factory|\Illuminate\View\View
     {
-        return view('Staff.bon_earning.index', [
+        return view('Staff.bon-earning.index', [
             'bonEarnings' => BonEarning::with('conditions')->orderBy('position')->get(),
         ]);
     }
@@ -40,7 +40,7 @@ class BonEarningController extends Controller
      */
     public function create(): \Illuminate\Contracts\View\Factory|\Illuminate\View\View
     {
-        return view('Staff.bon_earning.create');
+        return view('Staff.bon-earning.create');
     }
 
     /**
@@ -61,7 +61,7 @@ class BonEarningController extends Controller
      */
     public function edit(BonEarning $bonEarning): \Illuminate\Contracts\View\Factory|\Illuminate\View\View
     {
-        return view('Staff.bon_earning.edit', [
+        return view('Staff.bon-earning.edit', [
             'bonEarning' => $bonEarning->load('conditions'),
         ]);
     }

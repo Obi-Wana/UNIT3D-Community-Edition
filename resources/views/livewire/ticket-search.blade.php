@@ -143,11 +143,11 @@
                             {{ $ticket->priority->name }}
                         </td>
                         <td>
-                            <x-user_tag :user="$ticket->user" :anon="false" />
+                            <x-user-tag :user="$ticket->user" :anon="false" />
                         </td>
                         <td>
                             @if ($ticket->staff)
-                                <x-user_tag :user="$ticket->staff" :anon="false" />
+                                <x-user-tag :user="$ticket->staff" :anon="false" />
                             @else
                                 Unassigned
                             @endif

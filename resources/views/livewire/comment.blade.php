@@ -83,11 +83,11 @@
                     alt=""
                 />
             </figure>
-            <x-user_tag
+            <x-user-tag
                 class="comment__author"
                 :anon="$comment->anon"
                 :user="$comment->user"
-            ></x-user_tag>
+            ></x-user-tag>
             @if (! $comment->anon && ! empty($comment->user->title))
                 <p class="comment__author-title">
                     {{ $comment->user->title }}

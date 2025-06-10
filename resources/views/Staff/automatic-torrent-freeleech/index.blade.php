@@ -9,7 +9,7 @@
     <li class="breadcrumb--active">Automatic torrent freeleeches</li>
 @endsection
 
-@section('page', 'page__automatic-torrent-freeleeches--index')
+@section('page', 'page__staff-automatic-torrent-freeleeches--index')
 
 @section('main')
     <section class="panelV2">

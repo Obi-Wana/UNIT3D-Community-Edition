@@ -7,7 +7,7 @@
         <ul style="column-width: 200px; column-gap: 1rem; list-style-type: none; padding: 0">
             @foreach ($users as $user)
                 <li>
-                    <x-user_tag
+                    <x-user-tag
                         :user="$user"
                         :anon="$user->privacy?->hidden || ! $user->isVisible($user, 'other', 'show_online')"
                     >
@@ -19,7 +19,7 @@
                                 ></i>
                             </x-slot>
                         @endif
-                    </x-user_tag>
+                    </x-user-tag>
                 </li>
             @endforeach
         </ul>

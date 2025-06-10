@@ -20,7 +20,7 @@
     <li class="breadcrumb--active">Watchlist</li>
 @endsection
 
-@section('page', 'page__watchlist--index')
+@section('page', 'page__staff-watchlist--index')
 
 @section('main')
     @livewire('watchlist-search')

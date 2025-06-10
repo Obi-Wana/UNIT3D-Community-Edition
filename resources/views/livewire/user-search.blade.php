@@ -182,7 +182,7 @@
                                     />
                                 </td>
                                 <td colspan="2">
-                                    <x-user_tag :anon="false" :user="$user" />
+                                    <x-user-tag :anon="false" :user="$user" />
                                 </td>
                                 <td>{{ $user->email }}</td>
                                 <td>

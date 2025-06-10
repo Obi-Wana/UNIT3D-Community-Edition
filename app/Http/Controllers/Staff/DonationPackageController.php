@@ -29,7 +29,7 @@ class DonationPackageController extends Controller
      */
     public function index(): \Illuminate\Contracts\View\View|\Illuminate\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\Foundation\Application
     {
-        return view('Staff.donation_package.index', ['packages' => DonationPackage::orderBy('position')->paginate(25)]);
+        return view('Staff.donation-package.index', ['packages' => DonationPackage::orderBy('position')->paginate(25)]);
     }
 
     /**
@@ -37,7 +37,7 @@ class DonationPackageController extends Controller
      */
     public function create(): \Illuminate\Contracts\View\View|\Illuminate\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\Foundation\Application
     {
-        return view('Staff.donation_package.create');
+        return view('Staff.donation-package.create');
     }
 
     /**
@@ -56,7 +56,7 @@ class DonationPackageController extends Controller
      */
     public function edit(DonationPackage $package): \Illuminate\Contracts\View\View|\Illuminate\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\Foundation\Application
     {
-        return view('Staff.donation_package.edit', ['package' => $package]);
+        return view('Staff.donation-package.edit', ['package' => $package]);
     }
 
     /**

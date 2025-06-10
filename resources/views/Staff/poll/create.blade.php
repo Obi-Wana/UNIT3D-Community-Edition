@@ -20,7 +20,7 @@
     </li>
 @endsection
 
-@section('page', 'page__poll-admin--create')
+@section('page', 'page__staff-poll--create')
 
 @section('main')
     <section class="panelV2">

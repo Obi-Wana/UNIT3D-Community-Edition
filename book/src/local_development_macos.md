@@ -7,11 +7,11 @@ This guide is designed for setting up UNIT3D, a Laravel application, leveraging 
 **Warning**: This setup guide is intended for local development environments only and is not suitable for production
 deployment.
 
-## Modifying .env and Secure Headers for Non-HTTPS Instances
+## Modifying .env and secure headers for non-HTTPS instances
 
 For local development, it's common to use HTTP instead of HTTPS. To prevent mixed content issues, follow these steps:
 
-1. **Modify the `.env` Config:**
+1. **Modify the `.env` config:**
     - Open your `.env` file located in the root directory of your UNIT3D project.
     - Find the `SESSION_SECURE_COOKIE` setting and change its value to `false`. This action disables secure cookies,
       which are otherwise required for HTTPS.
@@ -20,7 +20,7 @@ For local development, it's common to use HTTP instead of HTTPS. To prevent mixe
     SESSION_SECURE_COOKIE=false
     ```
 
-2. **Adjust the Secure Headers in `config/secure-headers.php`:**
+2. **Adjust the secure headers in `config/secure-headers.php`:**
     - Navigate to the `config` directory and open the `secure-headers.php` file.
     - To disable the `Strict-Transport-Security` header, locate the `hsts` setting and change its value to `false`.
 
@@ -55,30 +55,30 @@ Once installed, launch GitHub Desktop
 
 Once installed, launch PHPStorm
 
-## Step 1: Clone the Repository
+## Step 1: clone the repository
 
 Firstly, clone the UNIT3D repository to your local environment by visiting [UNIT3D-Community-Edition Repo](https://github.com/HDInnovations/UNIT3D-Community-Edition). Then click the blue colored code button and select `Open with Github Desktop`. Once Github Desktop is open set you local path to clone to like `/Users/HDVinnie/Documents/Personal/UNIT3D-Community-Edition`
 
-## Step 2: Open The Project In PHPStorm
+## Step 2: open the project in PHPStorm
 
 Within PHPStorm goto `File` and then click `Open`. Select the local path you just did like `/Users/HDVinnie/Documents/Personal/UNIT3D-Community-Edition`.
 
 ### The following commands are run in PHPStorm. Can do so by clicking `Tools->Run Command`.
 
-## Step 3: Start Sail
+## Step 3: start Sail
 Initialize the Docker environment using Laravel Sail:
 
 ```bash
 ./vendor/bin/sail up -d
 ```
 
-## Step 4: Composer Dependency Installation
+## Step 4: Composer dependency installation
 
 ```bash
 ./vendor/bin/sail composer install
 ```
 
-## Step 5: Bun Dependency Install and Compile Assets
+## Step 5: Bun dependency install and compile assets
 
 ```bash
 ./vendor/bin/sail bun install
@@ -88,7 +88,7 @@ Initialize the Docker environment using Laravel Sail:
 ./vendor/bin/sail bun run build
 ```
 
-## Step 6: Database Migrations and Seeders
+## Step 6: database migrations and seeders
 
 For database initialization with sample data, apply migrations and seeders:
 
@@ -99,14 +99,14 @@ For database initialization with sample data, apply migrations and seeders:
 **Caution**: This operation will reset your database and seed it with default data. Exercise caution in production
 settings.
 
-## Step 7: Database Preparation (If want to use a production database backup locally)
+## Step 7: database preparation (if want to use a production database backup locally)
 
-### Initial Database Loading
+### Initial database loading
 
 Prepare your database with the initial schema and data. Ensure you have a database dump file,
 e.g., `prod-site-backup.sql`.
 
-### MySQL Data Importation
+### MySQL data importation
 
 To import your database dump into MySQL within the local environment, use:
 
@@ -116,7 +116,7 @@ To import your database dump into MySQL within the local environment, use:
 
 **Note**: For this to work properly you must set the APP_KEY value in your local `.env` file to match you prod APP_KEY value.
 
-## Step 8: Application Cache Configuration
+## Step 8: application cache configuration
 
 Optimize the application's performance by setting up the cache:
 
@@ -124,48 +124,48 @@ Optimize the application's performance by setting up the cache:
 sail artisan set:all_cache
 ```
 
-## Step 9: Visit Local Instance
+## Step 9: visit local instance
 
 Open your browser and visit `localhost`. Enjoy!
 
-## Additional Notes
+## Additional notes
 
 - **Permissions**: Exercise caution with `sudo` to avoid permission conflicts, particularly for Docker commands
   requiring elevated access.
 
-### Appendix: Sail Commands for UNIT3D
+### Appendix: Sail commands for UNIT3D
 
 This section outlines commands for managing and interacting with UNIT3D using Laravel Sail.
 
-#### Sail Management
+#### Sail management
 
-- **Start Environment**:
+- **Start environment**:
   ```bash
   ./vendor/bin/sail up -d
   ```
   Starts Docker containers in detached mode.
 
-- **Stop Environment**:
+- **Stop environment**:
   ```bash
   ./vendor/bin/sail down -v
   ```
   Stops and removes Docker containers.
 
-- **Restart Environment**:
+- **Restart environment**:
   ```bash
   ./vendor/bin/sail restart
   ```
   Applies changes by restarting Docker environment.
 
-#### Dependency Management
+#### Dependency management
 
-- **Install Composer Dependencies**:
+- **Install Composer dependencies**:
   ```bash
   ./vendor/bin/sail composer install
   ```
   Installs PHP dependencies defined in `composer.json`.
 
-- **Update Composer Dependencies**:
+- **Update Composer dependencies**:
   ```bash
   ./vendor/bin/sail composer update
   ```
@@ -173,55 +173,55 @@ This section outlines commands for managing and interacting with UNIT3D using La
 
 #### Laravel Artisan
 
-- **Run Migrations**:
+- **Run migrations**:
   ```bash
   ./vendor/bin/sail artisan migrate
   ```
   Executes database migrations.
 
-- **Seed Database**:
+- **Seed database**:
   ```bash
   ./vendor/bin/sail artisan db:seed
   ```
   Seeds database with predefined data.
 
-- **Refresh Database**:
+- **Refresh database**:
   ```bash
   ./vendor/bin/sail artisan migrate:fresh --seed
   ```
   Resets and seeds database.
 
-- **Cache Configurations**:
+- **Cache configurations**:
   ```bash
   ./vendor/bin/sail artisan set:all_cache
   ```
   Clears and caches configurations for performance.
 
-#### NPM and Assets
+#### NPM and assets
 
-- **Install Bun Dependencies**:
+- **Install Bun dependencies**:
   ```bash
   ./vendor/bin/sail bun install
   ```
   Installs Node.js dependencies.
 
-- **Compile Assets**:
+- **Compile assets**:
   ```bash
   ./vendor/bin/sail bun run build
   ```
   Compiles CSS and JavaScript assets.
 
-#### Database Operations
+#### Database operations
 
-- **MySQL Interaction**:
+- **MySQL interaction**:
   ```bash
   ./vendor/bin/sail mysql -u root -p
   ```
   Opens MySQL CLI for database interaction.
 
-#### Queue Management
+#### Queue management
 
-- **Restart Queue Workers**:
+- **Restart queue workers**:
   ```bash
   ./vendor/bin/sail artisan queue:restart
   ```
@@ -229,13 +229,13 @@ This section outlines commands for managing and interacting with UNIT3D using La
 
 #### Troubleshooting
 
-- **View Logs**:
+- **View logs**:
   ```bash
   ./vendor/bin/sail logs
   ```
   Displays Docker container logs.
 
-- **PHPUnit (PEST) Tests**:
+- **PHPUnit (PEST) tests**:
   ```bash
   ./vendor/bin/sail artisan test
   ```

@@ -22,7 +22,7 @@
     </li>
 @endsection
 
-@section('page', 'page__automatic-torrent-freeleech--edit')
+@section('page', 'page__staff-automatic-torrent-freeleech--edit')
 
 @section('main')
     <section class="panelV2">

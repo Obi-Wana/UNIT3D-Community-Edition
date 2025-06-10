@@ -19,7 +19,7 @@
     </li>
 @endsection
 
-@section('page', 'page__resolution--edit')
+@section('page', 'page__staff-resolution--edit')
 
 @section('main')
     <section class="panelV2">

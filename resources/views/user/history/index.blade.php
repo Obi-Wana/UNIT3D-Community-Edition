@@ -21,6 +21,8 @@
     @include('user.buttons.user')
 @endsection
 
+@section('page', 'page__user-history--index')
+
 @section('main')
     @livewire('user-torrents', ['userId' => $user->id])
     <section class="panelV2">

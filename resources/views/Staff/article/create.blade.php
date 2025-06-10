@@ -20,7 +20,7 @@
     </li>
 @endsection
 
-@section('page', 'page__article--create')
+@section('page', 'page__staff-article--create')
 
 @section('main')
     <section class="panelV2">

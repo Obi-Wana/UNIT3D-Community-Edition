@@ -21,6 +21,8 @@
     @include('user.buttons.user')
 @endsection
 
+@section('page', 'page__user-peer--index')
+
 @section('main')
     @livewire('user-active', ['userId' => $user->id])
     <section class="panelV2">

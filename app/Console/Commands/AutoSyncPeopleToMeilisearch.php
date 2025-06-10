@@ -60,6 +60,6 @@ class AutoSyncPeopleToMeilisearch extends Command
 
         $index->addDocuments($documents);
 
-        $this->comment('Synced all people to Meilisearch in '.(now()->diffInMilliseconds($start) / 1000).' seconds.');
+        $this->comment('Synced all people to Meilisearch in '.(int) (now()->diffInMilliseconds($start, true) / 1000).' seconds.');
     }
 }

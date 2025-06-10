@@ -24,7 +24,7 @@
     @include('user.buttons.user')
 @endsection
 
-@section('page', 'page__bonus--tips')
+@section('page', 'page__user-torrent-tip--index')
 
 @section('main')
     <section class="panelV2">
@@ -47,14 +47,14 @@
                                 @if ($tip->sender === null)
                                     Deleted user
                                 @else
-                                    <x-user_tag :user="$tip->sender" :anon="false" />
+                                    <x-user-tag :user="$tip->sender" :anon="false" />
                                 @endif
                             </td>
                             <td>
                                 @if ($tip->torrent === null)
                                     Torrent Deleted
                                 @else
-                                    <x-user_tag
+                                    <x-user-tag
                                         :user="$tip->recipient"
                                         :anon="$tip->torrent->anon"
                                     />

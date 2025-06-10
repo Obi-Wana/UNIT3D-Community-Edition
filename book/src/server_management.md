@@ -1,4 +1,4 @@
-# Server Management
+# Server management
 
 <!-- cspell:ignore certbot,chgrp,usermod -->
 
@@ -10,11 +10,11 @@
 > - The project root directory is located at `/var/www/html`.
 > - All commands are run from the project root directory.
 
-## 1. Elevated Shell
+## 1. Elevated shell
 
 All SSH and SFTP operations should be conducted using the non-root user. Use `sudo` for any commands that require elevated privileges. Do not use the `root` user directly.
 
-## 2. File Permissions
+## 2. File permissions
 
 Ensure that everything in `/var/www/html` is owned by `www-data:www-data`, except for `node_modules`, which should be owned by `root:root`.
 
@@ -30,9 +30,9 @@ sudo chmod -R ug+rwx storage bootstrap/cache
 sudo rm -rf node_modules && sudo bun install && sudo bun run build
 ```
 
-## 3. Handling Code Changes
+## 3. Handling code changes
 
-### PHP Changes
+### PHP changes
 
 If any PHP files are modified, run the following commands to clear the cache, restart the PHP-FPM service, and restart the Laravel queues:
 
@@ -40,7 +40,7 @@ If any PHP files are modified, run the following commands to clear the cache, re
 sudo php artisan set:all_cache && sudo systemctl restart php8.3-fpm && sudo php artisan queue:restart
 ```
 
-### Static Assets (SCSS, JS)
+### Static assets (SCSS, JS)
 
 If you make changes to SCSS or JavaScript files, rebuild the static assets using:
 
@@ -48,9 +48,9 @@ If you make changes to SCSS or JavaScript files, rebuild the static assets using
 bun run build
 ```
 
-## 4. Changing the Domain
+## 4. Changing the domain
 
-1. **Update the Environment Variables:**
+1. **Update the environment variables:**
 
    Modify the domain in the `APP_URL` and `MIX_ECHO_ADDRESS` variables within the `.env` file:
 
@@ -58,7 +58,7 @@ bun run build
     sudo nano ./.env
     ```
 
-2. **Refresh the TLS Certificate:**
+2. **Refresh the TLS certificate:**
 
    Use `certbot` to refresh the TLS certificate:
 
@@ -66,7 +66,7 @@ bun run build
     certbot --redirect --nginx -n --agree-tos --email=sysop@your_domain.tld -d your_domain.tld -d www.your_domain.tld --rsa-key-size 2048
     ```
 
-3. **Update the WebSocket Configuration:**
+3. **Update the WebSocket configuration:**
 
    Update all domains listed in the WebSocket configuration to reflect the new domain:
 
@@ -74,7 +74,7 @@ bun run build
     sudo nano ./laravel-echo-server.json
     ```
 
-4. **Restart the Chatbox Server:**
+4. **Restart the chatbox server:**
 
    Reload the Supervisor configuration to apply changes:
 
@@ -82,7 +82,7 @@ bun run build
     sudo supervisorctl reload
     ```
 
-5. **Compile Static Assets:**
+5. **Compile static assets:**
 
    Rebuild the static assets:
 
@@ -90,7 +90,6 @@ bun run build
     bun run build
     ```
 
-## 5. Meilisearch Maintenance
+## 5. Meilisearch maintenance
 
 Refer [Meilisearch setup for UNIT3D](https://github.com/HDInnovations/UNIT3D-Community-Edition/wiki/Meilisearch-Setup-for-UNIT3D), specifically the [maintenance](https://github.com/HDInnovations/UNIT3D-Community-Edition/wiki/Meilisearch-Setup-for-UNIT3D#3-maintenance) section, for managing upgrades and syncing indexes.
-

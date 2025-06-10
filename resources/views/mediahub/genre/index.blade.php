@@ -19,6 +19,8 @@
     </li>
 @endsection
 
+@section('page', 'page__genre--index')
+
 @section('main')
     <section class="panelV2">
         <h2 class="panel__heading">{{ __('common.genres') }}</h2>

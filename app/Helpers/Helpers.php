@@ -223,4 +223,11 @@ if (!\function_exists('language_flag')) {
 
         return $flag !== null ? '/img/flags/'.$flag.'.png' : null;
     }
+
+    if (!\function_exists('sanitize_filename')) {
+        function sanitize_filename(string $filename): string
+        {
+            return str_replace([' ', '/', '\\'], ['.', '-', '-'], $filename);
+        }
+    }
 }

@@ -287,17 +287,17 @@ class TorrentRequestSearch extends Component
                     })
                         ->orWhere(function ($query): void {
                             if ($this->claimed) {
-                                $query->whereNotNull('claimed')->whereNull('torrent_id')->whereNull('approved_by');
+                                $query->whereNotNull('claimed')->whereNull('torrent_id')->whereNull('approved_when');
                             }
                         })
                         ->orWhere(function ($query): void {
                             if ($this->pending) {
-                                $query->whereNotNull('torrent_id')->whereNull('approved_by');
+                                $query->whereNotNull('torrent_id')->whereNull('approved_when');
                             }
                         })
                         ->orWhere(function ($query): void {
                             if ($this->filled) {
-                                $query->whereNotNull('torrent_id')->whereNotNull('approved_by');
+                                $query->whereNotNull('torrent_id')->whereNotNull('approved_when');
                             }
                         });
                 });

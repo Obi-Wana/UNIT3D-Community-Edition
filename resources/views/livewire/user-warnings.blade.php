@@ -129,7 +129,7 @@
                 @forelse ($warnings as $warning)
                     <tr x-data="userWarnings" data-warning-id="{{ $warning->id }}">
                         <td>
-                            <x-user_tag :user="$warning->staffuser" :anon="false" />
+                            <x-user-tag :user="$warning->staffuser" :anon="false" />
                         </td>
                         @if ($warningTab !== 'manual')
                             <td>
