@@ -2410,6 +2410,7 @@ CREATE TABLE `user_notifications` (
   `show_torrent_thank` tinyint(1) NOT NULL DEFAULT '1',
   `show_account_follow` tinyint(1) NOT NULL DEFAULT '1',
   `show_account_unfollow` tinyint(1) NOT NULL DEFAULT '1',
+  `show_collectible_new_item` tinyint(1) NOT NULL DEFAULT '1',
   `json_account_groups` json NOT NULL,
   `json_bon_groups` json NOT NULL,
   `json_mention_groups` json NOT NULL,
@@ -2441,6 +2442,7 @@ CREATE TABLE `user_notifications` (
   KEY `user_notifications_show_torrent_thank_index` (`show_torrent_thank`),
   KEY `user_notifications_show_account_follow_index` (`show_account_follow`),
   KEY `user_notifications_show_account_unfollow_index` (`show_account_unfollow`),
+  KEY `user_notifications_show_collectible_new_item_index` (`show_collectible_new_item`),
   CONSTRAINT `user_notifications_user_id_foreign` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON UPDATE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -3110,3 +3112,4 @@ INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES (355,'2025_06_18_00
 INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES (356,'2025_06_18_040627_alter_requests_drop_claimed',1);
 INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES (357,'2025_06_21_234021_alter_requests_drop_votes',1);
 INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES (358,'2025_07_15_061844_add_block_order_to_user_settings',1);
+INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES (359,'2025_08_03_105354_create_collectables_notification_tables',1);
