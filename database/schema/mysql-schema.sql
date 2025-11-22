@@ -2246,6 +2246,57 @@ CREATE TABLE `unregistered_info_hashes` (
   CONSTRAINT `unregistered_info_hashes_user_id_foreign` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
+DROP TABLE IF EXISTS `upload_contest_prizes`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `upload_contest_prizes` (
+  `id` int unsigned NOT NULL AUTO_INCREMENT,
+  `upload_contest_id` int unsigned NOT NULL,
+  `type` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `amount` int unsigned NOT NULL,
+  `position` int unsigned NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  KEY `upload_contest_prizes_upload_contest_id_foreign` (`upload_contest_id`),
+  CONSTRAINT `upload_contest_prizes_upload_contest_id_foreign` FOREIGN KEY (`upload_contest_id`) REFERENCES `upload_contests` (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+DROP TABLE IF EXISTS `upload_contest_winners`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `upload_contest_winners` (
+  `id` int unsigned NOT NULL AUTO_INCREMENT,
+  `upload_contest_id` int unsigned NOT NULL,
+  `user_id` int unsigned NOT NULL,
+  `place_number` int unsigned NOT NULL,
+  `uploads` int unsigned NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  KEY `upload_contest_winners_upload_contest_id_foreign` (`upload_contest_id`),
+  KEY `upload_contest_winners_user_id_foreign` (`user_id`),
+  CONSTRAINT `upload_contest_winners_upload_contest_id_foreign` FOREIGN KEY (`upload_contest_id`) REFERENCES `upload_contests` (`id`),
+  CONSTRAINT `upload_contest_winners_user_id_foreign` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+DROP TABLE IF EXISTS `upload_contests`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `upload_contests` (
+  `id` int unsigned NOT NULL AUTO_INCREMENT,
+  `name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `description` text COLLATE utf8mb4_unicode_ci NOT NULL,
+  `icon` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `active` tinyint(1) NOT NULL,
+  `awarded` tinyint(1) NOT NULL,
+  `starts_at` date NOT NULL,
+  `ends_at` date NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
 DROP TABLE IF EXISTS `user_audibles`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
@@ -3051,3 +3102,4 @@ INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES (368,'2025_11_29_10
 INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES (369,'2026_01_06_231535_remove_unnecessary_bigints',1);
 INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES (370,'2026_01_07_040502_mark_columns_as_unsigned',1);
 INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES (371,'2026_01_09_015532_alter_table_reports_make_verdict_nullable',1);
+INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES (372,'2025_11_22_121612_create_upload_events_table',1);
