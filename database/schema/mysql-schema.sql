@@ -3098,8 +3098,8 @@ INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES (364,'2025_09_08_00
 INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES (365,'2025_09_25_110038_alter_reports_create_assignee',1);
 INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES (366,'2025_11_08_094209_rename_warnings_torrent_to_torrent_id',1);
 INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES (367,'2025_11_18_080804_echoes_audibles_unique_keys',1);
-INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES (368,'2025_11_29_101934_update_events_rename_to_giveaways',1);
-INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES (369,'2026_01_06_231535_remove_unnecessary_bigints',1);
-INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES (370,'2026_01_07_040502_mark_columns_as_unsigned',1);
-INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES (371,'2026_01_09_015532_alter_table_reports_make_verdict_nullable',1);
-INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES (372,'2025_11_22_121612_create_upload_events_table',1);
+INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES (368,'2025_11_22_121612_create_upload_events_table',1);
+INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES (369,'2025_11_29_101934_update_events_rename_to_giveaways',1);
+INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES (370,'2026_01_06_231535_remove_unnecessary_bigints',1);
+INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES (371,'2026_01_07_040502_mark_columns_as_unsigned',1);
+INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES (372,'2026_01_09_015532_alter_table_reports_make_verdict_nullable',1);

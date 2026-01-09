@@ -64,11 +64,12 @@ class AutoRewardUploadContestPrize extends Command
             $winners = Torrent::query()
                 ->with('user.group')
                 ->where('anon', '=', false)
-                ->select(DB::raw('user_id, count(*) as uploads'))
+                ->select(DB::raw('user_id, count(*) as uploads, max(created_at) as last_upload'))
                 ->where('created_at', '>=', $activeUploadContest->starts_at->startOfDay())
                 ->where('created_at', '<=', $activeUploadContest->ends_at->endOfDay())
                 ->groupBy('user_id')
                 ->orderByDesc('uploads')
+                ->orderBy('last_upload')
                 ->limit($numRewards)
                 ->get();
 
