@@ -56,7 +56,7 @@ return new class () extends Migration {
             $table->unsignedInteger('uploads');
 
             $table->foreign('upload_contest_id')->references('id')->on('upload_contests');
-            $table->foreign('user_id')->references('id')->on('users')->cascadeOnUpdate()->cascadeOnDelete();
+            $table->foreign('user_id')->references('id')->on('users')->cascadeOnUpdate();
 
             $table->timestamps();
         });
