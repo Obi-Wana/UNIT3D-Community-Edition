@@ -14,15 +14,16 @@ declare(strict_types=1);
  * @license    https://www.gnu.org/licenses/agpl-3.0.en.html/ GNU Affero General Public License v3.0
  */
 
+use App\Console\Commands\AutoRewardUploadContestPrize;
 use App\Models\UploadContest;
 use App\Models\Torrent;
 use App\Models\User;
 
 /**
- * @see App\Console\Commands\AutoRewardUploadContestPrize
+ * @see AutoRewardUploadContestPrize
  */
 it('runs successfully', function (): void {
-    $this->artisan('auto:reward_upload_contest_prize')
+    $this->artisan(AutoRewardUploadContestPrize::class)
         ->assertExitCode(0)
         ->run();
 });
@@ -85,7 +86,7 @@ it('rewards the top competitors in active upload contests', function (): void {
     ]);
 
     // Run command
-    $this->artisan('auto:reward_upload_contest_prize')->assertExitCode(0);
+    $this->artisan(AutoRewardUploadContestPrize::class)->assertExitCode(0);
 
     // Assert
     $this->assertDatabaseHas('upload_contests', [
