@@ -851,25 +851,6 @@ Route::middleware('language')->group(function (): void {
                 });
             });
 
-            // Upload Contests
-            Route::prefix('upload-contests')->name('upload_contests.')->group(function (): void {
-                Route::get('/', [App\Http\Controllers\Staff\UploadContestController::class, 'index'])->name('index');
-                Route::get('/create', [App\Http\Controllers\Staff\UploadContestController::class, 'create'])->name('create');
-                Route::post('/', [App\Http\Controllers\Staff\UploadContestController::class, 'store'])->name('store');
-                Route::prefix('{uploadContest}')->group(function (): void {
-                    Route::get('/edit', [App\Http\Controllers\Staff\UploadContestController::class, 'edit'])->name('edit');
-                    Route::patch('/', [App\Http\Controllers\Staff\UploadContestController::class, 'update'])->name('update');
-                    Route::delete('/', [App\Http\Controllers\Staff\UploadContestController::class, 'destroy'])->name('destroy');
-
-                    // Prizes
-                    Route::prefix('prizes')->name('prizes.')->group(function (): void {
-                        Route::post('/', [App\Http\Controllers\Staff\UploadContestPrizeController::class, 'store'])->name('store');
-                        Route::patch('/{prize}', [App\Http\Controllers\Staff\UploadContestPrizeController::class, 'update'])->name('update');
-                        Route::delete('/{prize}', [App\Http\Controllers\Staff\UploadContestPrizeController::class, 'destroy'])->name('destroy');
-                    });
-                });
-            });
-
             // Flush System
             Route::prefix('flush')->name('flush.')->group(function (): void {
                 Route::post('/peers', [App\Http\Controllers\Staff\FlushController::class, 'peers'])->name('peers');
@@ -1095,6 +1076,25 @@ Route::middleware('language')->group(function (): void {
             // Unregistered Torrents
             Route::prefix('unregistered-info-hashes')->name('unregistered_info_hashes.')->group(function (): void {
                 Route::get('/', [App\Http\Controllers\Staff\UnregisteredInfoHashController::class, 'index'])->name('index');
+            });
+
+            // Upload Contests
+            Route::prefix('upload-contests')->name('upload_contests.')->group(function (): void {
+                Route::get('/', [App\Http\Controllers\Staff\UploadContestController::class, 'index'])->name('index');
+                Route::get('/create', [App\Http\Controllers\Staff\UploadContestController::class, 'create'])->name('create');
+                Route::post('/', [App\Http\Controllers\Staff\UploadContestController::class, 'store'])->name('store');
+                Route::prefix('{uploadContest}')->group(function (): void {
+                    Route::get('/edit', [App\Http\Controllers\Staff\UploadContestController::class, 'edit'])->name('edit');
+                    Route::patch('/', [App\Http\Controllers\Staff\UploadContestController::class, 'update'])->name('update');
+                    Route::delete('/', [App\Http\Controllers\Staff\UploadContestController::class, 'destroy'])->name('destroy');
+
+                    // Prizes
+                    Route::prefix('prizes')->name('prizes.')->group(function (): void {
+                        Route::post('/', [App\Http\Controllers\Staff\UploadContestPrizeController::class, 'store'])->name('store');
+                        Route::patch('/{prize}', [App\Http\Controllers\Staff\UploadContestPrizeController::class, 'update'])->name('update');
+                        Route::delete('/{prize}', [App\Http\Controllers\Staff\UploadContestPrizeController::class, 'destroy'])->name('destroy');
+                    });
+                });
             });
 
             // User Staff Notes
