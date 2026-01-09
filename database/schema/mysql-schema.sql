@@ -2277,7 +2277,7 @@ CREATE TABLE `upload_contest_winners` (
   KEY `upload_contest_winners_upload_contest_id_foreign` (`upload_contest_id`),
   KEY `upload_contest_winners_user_id_foreign` (`user_id`),
   CONSTRAINT `upload_contest_winners_upload_contest_id_foreign` FOREIGN KEY (`upload_contest_id`) REFERENCES `upload_contests` (`id`),
-  CONSTRAINT `upload_contest_winners_user_id_foreign` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
+  CONSTRAINT `upload_contest_winners_user_id_foreign` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON UPDATE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 DROP TABLE IF EXISTS `upload_contests`;
