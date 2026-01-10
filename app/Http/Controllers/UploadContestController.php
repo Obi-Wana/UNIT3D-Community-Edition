@@ -44,11 +44,12 @@ class UploadContestController extends Controller
             $uploaders = Torrent::query()
                 ->with('user.group')
                 ->where('anon', '=', false)
-                ->select(DB::raw('user_id, count(*) as uploads'))
+                ->select(DB::raw('user_id, count(*) as uploads, max(created_at) as last_upload'))
                 ->where('created_at', '>=', $uploadContest->starts_at->startOfDay())
                 ->where('created_at', '<=', $uploadContest->ends_at->endOfDay())
                 ->groupBy('user_id')
                 ->orderByDesc('uploads')
+                ->orderBy('last_upload')
                 ->take(25)
                 ->get();
         } else {
