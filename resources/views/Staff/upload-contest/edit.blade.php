@@ -344,7 +344,7 @@
                                             <button
                                                 x-on:click.prevent="confirmAction"
                                                 class="form__button form__button--text"
-                                                data-b64-deletion-message="{{ base64_encode('Are you sure you want to remove this prize (Type: ' . $prize->type . ', Min: ' . $prize->min . ', Max: ' . $prize->max . ', Weight: ' . $prize->weight . ') from this contest (.' . $uploadContest->name . ')?') }}"
+                                                data-b64-deletion-message="{{ base64_encode('Are you sure you want to remove this prize (Type: ' . $prize->type . ', Amount: ' . $prize->amount . ') from this contest (.' . $uploadContest->name . ')?') }}"
                                             >
                                                 {{ __('common.delete') }}
                                             </button>
