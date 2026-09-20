@@ -75,10 +75,7 @@ final class TorrentRequestClaim extends Model
      */
     public function user(): BelongsTo
     {
-        return $this->belongsTo(User::class)->withDefault([
-            'username' => 'System',
-            'id'       => User::SYSTEM_USER_ID,
-        ]);
+        return $this->belongsTo(User::class)->withTrashed();
     }
 
     /**
