@@ -749,6 +749,28 @@ class TorrentSearch extends Component
                 $this->reset('sortField');
             }
 
+            $results = (new Client(config('scout.meilisearch.host'), config('scout.meilisearch.key')))
+                ->index(config('scout.prefix').'torrents')
+                ->search($this->name, [
+                    'sort'                 => ['sticky:desc', $this->sortField.':'.$this->sortDirection,],
+                    'filter'               => [...$this->filters()->toMeilisearchFilter(), 'imdb IS NOT NULL', ['tmdb_movie_id IS NOT NULL', 'tmdb_tv_id IS NOT NULL']],
+                    'matchingStrategy'     => 'all',
+                    'page'                 => (int) $this->getPage(),
+                    'hitsPerPage'          => min($this->perPage, 100),
+                    'attributesToRetrieve' => ['tmdb_movie_id', 'tmdb_tv_id'],
+                    'distinct'             => 'imdb',
+                ]);
+
+            $ids = [];
+
+            foreach ($results->getHits() as $result) {
+                if ($result['tmdb_movie_id']) {
+                    $ids[] = "tmdb-movie:{$result['tmdb_movie_id']}";
+                } elseif ($result['tmdb_tv_id']) {
+                    $ids[] = "tmdb-tv:{$result['tmdb_tv_id']}";
+                }
+            }
+
             $groups = Torrent::query()
                 ->select('tmdb_movie_id', 'tmdb_tv_id')
                 ->selectRaw('MAX(sticky) as sticky')
@@ -762,7 +784,15 @@ class TorrentSearch extends Component
                 ->groupBy('tmdb_movie_id', 'tmdb_tv_id')
                 ->latest('sticky')
                 ->orderBy($this->sortField, $this->sortDirection)
-                ->paginate(min($this->perPage, 100));
+                ->where(
+                    fn ($query) => $query
+                        ->whereIntegerInRaw('tmdb_movie_id', array_filter(array_column($results->getHits(), 'tmdb_movie_id')))
+                        ->orWhereIntegerInRaw('tmdb_tv_id', array_filter(array_column($results->getHits(), 'tmdb_tv_id')))
+                )
+                ->get()
+                ->sortBy(fn ($group) => array_search($group->tmdb_movie_id ? "tmdb-movie:{$group->tmdb_movie_id}" : "tmdb-tv:{$group->tmdb_tv_id}", $ids));
+
+            $groups = new LengthAwarePaginator($groups, $results->getTotalHits(), $this->perPage, $this->getPage());
 
             $movieIds = $groups->getCollection()->where('meta', '=', 'movie')->pluck('tmdb_movie_id');
             $tvIds = $groups->getCollection()->where('meta', '=', 'tv')->pluck('tmdb_tv_id');
