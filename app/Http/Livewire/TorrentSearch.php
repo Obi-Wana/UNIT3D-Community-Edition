@@ -507,7 +507,7 @@ class TorrentSearch extends Component
 
                 $torrents = $torrents->get()->sortBy(fn ($torrent) => array_search($torrent->id, $ids));
 
-                $torrents = new LengthAwarePaginator($torrents, $results->getTotalHits(), $this->perPage, $this->getPage());
+                $torrents = new LengthAwarePaginator($torrents, min(1000, $results->getTotalHits()), $this->perPage, $this->getPage());
             }
 
             // See app/Traits/TorrentMeta.php
@@ -644,7 +644,7 @@ class TorrentSearch extends Component
                     ->get()
                     ->sortBy(fn ($group) => array_search($group->tmdb_movie_id ? "tmdb-movie:{$group->tmdb_movie_id}" : "tmdb-tv:{$group->tmdb_tv_id}", $ids));
 
-                $groups = new LengthAwarePaginator($groups, $results->getTotalHits(), $this->perPage, $this->getPage());
+                $groups = new LengthAwarePaginator($groups, min(1000, $results->getTotalHits()), $this->perPage, $this->getPage());
             }
 
             $movieIds = $groups->getCollection()->where('meta', '=', 'movie')->pluck('tmdb_movie_id');
@@ -792,7 +792,7 @@ class TorrentSearch extends Component
                 ->get()
                 ->sortBy(fn ($group) => array_search($group->tmdb_movie_id ? "tmdb-movie:{$group->tmdb_movie_id}" : "tmdb-tv:{$group->tmdb_tv_id}", $ids));
 
-            $groups = new LengthAwarePaginator($groups, $results->getTotalHits(), $this->perPage, $this->getPage());
+            $groups = new LengthAwarePaginator($groups, min(1000, $results->getTotalHits()), $this->perPage, $this->getPage());
 
             $movieIds = $groups->getCollection()->where('meta', '=', 'movie')->pluck('tmdb_movie_id');
             $tvIds = $groups->getCollection()->where('meta', '=', 'tv')->pluck('tmdb_tv_id');
