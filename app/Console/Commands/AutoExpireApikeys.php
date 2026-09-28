@@ -51,7 +51,7 @@ class AutoExpireApikeys extends Command
             ->where('expires_at', '<', now()->addWeek())
             ->whereNull('reminded_expiry_at')
             ->each(function (Apikey $apikey): void {
-                $apikey->user->notify(new ApikeyExpireReminder($apikey->name));
+                $apikey->user?->notify(new ApikeyExpireReminder($apikey->name));
                 $apikey->update(['reminded_expiry_at' => now()]);
             });
 
@@ -60,7 +60,7 @@ class AutoExpireApikeys extends Command
             ->where('expires_at', '<', now())
             ->whereNotNull('reminded_expiry_at')
             ->each(function (Apikey $apikey): void {
-                $apikey->user->notify(new ApikeyExpire($apikey->name));
+                $apikey->user?->notify(new ApikeyExpire($apikey->name));
                 $apikey->delete();
             });
 
