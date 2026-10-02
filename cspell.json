@@ -182,7 +182,6 @@
 		"app/Helpers/Markdown.php",
 		"app/Helpers/MarkdownExtra.php",
 		"app/Helpers/MediaInfo.php",
-		"config/censor.php",
 		"config/language.php",
 		"config/secure-headers.php",
 		"database/migrations/20{1,2{0,1,2,3,4}}*",

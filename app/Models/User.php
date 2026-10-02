@@ -305,7 +305,6 @@ final class User extends Authenticatable implements MustVerifyEmail
     public function settings(): HasOne
     {
         return $this->hasOne(UserSetting::class)->withDefault([
-            'censor'                            => false,
             'news_block_visible'                => true,
             'news_block_position'               => 0,
             'chat_block_visible'                => true,
