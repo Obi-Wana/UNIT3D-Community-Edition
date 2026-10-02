@@ -259,7 +259,6 @@
                                         @class([
                                             'bbcode-rendered',
                                             'chatbox-message__content',
-                                            'bbcode-rendered__censor' => $user->settings->censor,
                                         ])
                                         x-show="! (message[1].bot && message[1].bot.id >= 1 && (! message[1].user || message[1].user.id < 2))"
                                         x-effect="renderMessage(message[1].message)"

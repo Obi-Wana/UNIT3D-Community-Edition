@@ -74,7 +74,6 @@ final class UserSetting extends Model
      * Get the attributes that should be cast.
      *
      * @return array{
-     *     censor: 'bool',
      *     news_block_visible: 'bool',
      *     news_block_position: 'int',
      *     chat_block_visible: 'bool',
@@ -106,7 +105,6 @@ final class UserSetting extends Model
     protected function casts(): array
     {
         return [
-            'censor'                            => 'bool',
             'news_block_visible'                => 'bool',
             'news_block_position'               => 'int',
             'chat_block_visible'                => 'bool',

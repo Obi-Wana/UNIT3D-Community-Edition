@@ -29,7 +29,6 @@ class UserSettingFactory extends Factory
     {
         return [
             'user_id'                           => User::factory(),
-            'censor'                            => $this->faker->boolean(),
             'style'                             => $this->faker->boolean(),
             'torrent_layout'                    => $this->faker->boolean(),
             'torrent_filters'                   => $this->faker->boolean(),
