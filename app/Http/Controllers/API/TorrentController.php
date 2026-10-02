@@ -85,7 +85,8 @@ class TorrentController extends BaseController
                 ->selectRaw(self::META_TYPE_CASE.' as meta')
                 ->latest('sticky')
                 ->latest('bumped_at')
-                ->cursorPaginate(25);
+                ->limit(25)
+                ->get();
 
             // See app/Traits/TorrentMeta.php
             $this->scopeMeta($torrents);
