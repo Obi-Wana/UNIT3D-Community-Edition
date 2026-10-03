@@ -104,7 +104,7 @@ class AutoUpsertHistories extends Command
                 );
             }, 5);
 
-            Redis::connection('announce')->command('LTRIM', [$key, $historiesPerCycle, -1]);
+            Redis::connection('announce')->command('LTRIM', [$key, \count($histories), -1]);
         }
 
         $this->comment('Automated upsert histories command complete');
