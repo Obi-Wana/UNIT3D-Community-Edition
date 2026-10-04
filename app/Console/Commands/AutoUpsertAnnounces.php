@@ -68,7 +68,7 @@ class AutoUpsertAnnounces extends Command
         $announceCount = Redis::connection('announce')->command('LLEN', [$key]);
 
         for ($announcesLeft = $announceCount; $announcesLeft > 0; $announcesLeft -= $announcesPerCycle) {
-            $announces = Redis::connection('announce')->command('LPOP', [$key, $announcesPerCycle]);
+            $announces = Redis::connection('announce')->command('LRANGE', [$key, 0, $announcesPerCycle - 1]);
 
             if ($announces === false) {
                 break;
@@ -77,6 +77,8 @@ class AutoUpsertAnnounces extends Command
             $announces = array_map(unserialize(...), $announces);
 
             DB::transaction(static fn () => Announce::query()->insert($announces), 5);
+
+            Redis::connection('announce')->command('LTRIM', [$key, \count($announces), -1]);
         }
 
         $this->comment('Automated upsert announce command complete');
