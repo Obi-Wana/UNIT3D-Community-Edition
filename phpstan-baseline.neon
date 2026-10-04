@@ -589,13 +589,13 @@ parameters:
 			path: app/Providers/AppServiceProvider.php
 
 		-
-			message: '#^Method Laravel\\Fortify\\Contracts\\LoginResponse@anonymous/app/Providers/FortifyServiceProvider\.php\:48\:\:toResponse\(\) should return Illuminate\\Http\\RedirectResponse but returns Illuminate\\Http\\RedirectResponse\|true\.$#'
-			identifier: return.type
+			message: '#^Parameter \#1 \$string of function rtrim expects string, true given\.$#'
+			identifier: argument.type
 			count: 1
 			path: app/Providers/FortifyServiceProvider.php
 
 		-
-			message: '#^Parameter \#1 \$string of function rtrim expects string, true given\.$#'
+			message: '#^Parameter \#1 \$to of function redirect expects string\|null, string\|true given\.$#'
 			identifier: argument.type
 			count: 1
 			path: app/Providers/FortifyServiceProvider.php
