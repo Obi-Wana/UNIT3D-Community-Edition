@@ -21,10 +21,15 @@
     <section class="panelV2">
         <h2 class="panel__heading">{{ __('auth.two-factor-confirmation') }}</h2>
         <div class="panel__body">
-            <form class="form" action="{{ route('two-factor.confirm.store') }}" method="POST">
+            <form
+                class="form"
+                action="{{ route('two-factor.confirm.store') }}"
+                method="POST"
+                x-data="{ recovery: false }"
+            >
                 @csrf
                 <p>{{ __('auth.two-factor-confirm-desc') }}</p>
-                <p class="form__group">
+                <p class="form__group" x-show="!recovery">
                     <input
                         id="code"
                         class="form__text"
@@ -44,10 +49,33 @@
                         <span class="form__hint">{{ $error }}</span>
                     @enderror
                 </p>
+                <p class="form__group" x-show="recovery" x-cloak>
+                    <input
+                        id="recovery_code"
+                        class="form__text"
+                        name="recovery_code"
+                        type="text"
+                        autocapitalize="off"
+                        autocomplete="off"
+                        autocorrect="off"
+                        spellcheck="false"
+                    />
+                    <label class="form__label form__label--floating" for="recovery_code">
+                        {{ __('auth.recovery-code') }}
+                    </label>
+                    @error('error')
+                        <span class="form__hint">{{ $error }}</span>
+                    @enderror
+                </p>
                 <p class="form__group">
                     <button class="form__button form__button--filled">
                         {{ __('common.submit') }}
                     </button>
+                    <button
+                        class="form__button form__button--outlined"
+                        x-on:click.prevent="recovery = !recovery"
+                        x-text="recovery ? {{ Js::from(__('auth.code')) }} : {{ Js::from(__('Use a recovery code')) }}"
+                    ></button>
                 </p>
             </form>
         </div>

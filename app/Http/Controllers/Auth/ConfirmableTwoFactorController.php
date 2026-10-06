@@ -19,7 +19,9 @@ namespace App\Http\Controllers\Auth;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Date;
-use Laravel\Fortify\Actions\ConfirmTwoFactorAuthentication;
+use Illuminate\Validation\ValidationException;
+use Laravel\Fortify\Contracts\TwoFactorAuthenticationProvider;
+use Laravel\Fortify\Fortify;
 
 class ConfirmableTwoFactorController extends Controller
 {
@@ -34,9 +36,24 @@ class ConfirmableTwoFactorController extends Controller
     /**
      * Confirm the user's two factor code.
      */
-    public function store(Request $request, ConfirmTwoFactorAuthentication $confirm): \Illuminate\Http\RedirectResponse
+    public function store(Request $request, TwoFactorAuthenticationProvider $provider): \Illuminate\Http\RedirectResponse
     {
-        $confirm($request->user(), $request->input('code'));
+        /** @see https://github.com/laravel/fortify/blob/f7c3fd787a64ada544353c0423e4589b1626ec75/src/Http/Controllers/TwoFactorAuthenticatedSessionController.php#L56 */
+        if (
+            $request->recovery_code
+            && $code = collect($request->user()->recoveryCodes())->first(fn ($code) => hash_equals($code, $request->recovery_code))
+        ) {
+            $request->user()->replaceRecoveryCode($code);
+        } elseif (
+            ! $provider->verify(
+                Fortify::currentEncrypter()->decrypt($request->user()->two_factor_secret),
+                $request->code
+            )
+        ) {
+            throw ValidationException::withMessages([
+                'code' => [__('The provided two factor authentication code was invalid.')],
+            ])->errorBag('confirmTwoFactorAuthentication');
+        }
 
         $request->session()->put('auth.two_factor_confirmed_at', Date::now()->unix());
 
