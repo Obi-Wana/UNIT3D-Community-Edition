@@ -35,10 +35,8 @@ class ConfirmTwoFactor
     {
         if (
             $request->user()->two_factor_confirmed_at !== null
-            && (
-                $request->user()->two_factor_confirmed_at < now()->subSeconds(300)
-                || $request->session()->get('auth.two_factor_confirmed_at', 0) < now()->subSeconds(300)->unix()
-            )
+            && $request->user()->two_factor_confirmed_at < now()->subSeconds(300)
+            && $request->session()->get('auth.two_factor_confirmed_at', 0) < now()->subSeconds(300)->unix()
         ) {
             return $this->responseFactory->redirectGuest($this->urlGenerator->route('two-factor.confirm'));
         }
