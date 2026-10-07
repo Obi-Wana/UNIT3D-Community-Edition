@@ -81,7 +81,37 @@ class TorrentController extends BaseController
                 ->withExists([
                     'featured as featured'
                 ])
-                ->select('*')
+                ->select([
+                    'id',
+                    'name',
+                    'tmdb_movie_id',
+                    'tmdb_tv_id',
+                    'igdb_game_id',
+                    'category_id',
+                    'type_id',
+                    'resolution_id',
+                    'distributor_id',
+                    'region_id',
+                    'size',
+                    'folder',
+                    'num_file',
+                    'free',
+                    'doubleup',
+                    'refundable',
+                    'internal',
+                    'featured',
+                    'personal_release',
+                    'anon',
+                    'seeders',
+                    'leechers',
+                    'times_completed',
+                    'imdb',
+                    'tvdb',
+                    'mal',
+                    'igdb',
+                    'created_at',
+                    'info_hash',
+                ])
                 ->selectRaw(self::META_TYPE_CASE.' as meta')
                 ->latest('sticky')
                 ->latest('bumped_at')
@@ -406,9 +436,6 @@ class TorrentController extends BaseController
                             'category'         => $hit['category']['name'] ?? null,
                             'type'             => $hit['type']['name'] ?? null,
                             'resolution'       => $hit['resolution']['name'] ?? null,
-                            'media_info'       => $hit['mediainfo'],
-                            'bd_info'          => $hit['bdinfo'],
-                            'description'      => $hit['description'],
                             'info_hash'        => $hit['info_hash'],
                             'size'             => $hit['size'],
                             'num_file'         => $hit['num_file'],

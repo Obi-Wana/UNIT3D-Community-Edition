@@ -127,7 +127,6 @@ final class Rss extends Model
         // Just Torrents for now... extendable to check on feed type in future.
         return [
             'search'          => null,
-            'description'     => null,
             'uploader'        => null,
             'imdb'            => null,
             'mal'             => null,
