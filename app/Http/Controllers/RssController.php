@@ -68,7 +68,6 @@ class RssController extends Controller
         $v = validator($request->all(), [
             'name'          => 'required|min:3|max:255',
             'search'        => 'max:255',
-            'description'   => 'max:255',
             'uploader'      => 'max:255',
             'categories'    => 'sometimes|array|max:999',
             'categories.*'  => 'sometimes|exists:categories,id',
@@ -84,7 +83,6 @@ class RssController extends Controller
         $params = $request->only([
             'name',
             'search',
-            'description',
             'uploader',
             'imdb',
             'tvdb',
